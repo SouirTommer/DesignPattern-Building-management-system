@@ -1,5 +1,3 @@
-import javax.sound.sampled.ReverbType;
-
 public class Apartment extends Building{
     private double monthlyRental;
     private String supportStaff;

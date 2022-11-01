@@ -19,7 +19,7 @@ public class Room{
         return width;
     }
     public String toString(){
-        return "hi";
+        return ", Length: " + getLength() + ", Width: " + getWidth();
     }
 
 }

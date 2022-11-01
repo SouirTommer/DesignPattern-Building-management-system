@@ -12,13 +12,13 @@ public class House extends Building{
         return noOfFloors;
     }
     public void modifyBuilding(){
-        
+
     }
     public void printBuilding(){
 
     }
     public String toString(){
-        return "House";
+        return "";
     }
 
 }
