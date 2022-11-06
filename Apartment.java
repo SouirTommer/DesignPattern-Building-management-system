@@ -20,7 +20,7 @@ public class Apartment extends Building{
         return this.supportStaff;
     }
     public void modifyBuilding(){
-
+        
     }
     public void printBuilding(){
         System.out.println("Building No: "+super.getId());

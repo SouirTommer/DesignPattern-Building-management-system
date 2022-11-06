@@ -23,11 +23,13 @@ public abstract class Building{
         return roomId;
     }
     public void modifyRoom(int roomNo, double length, double width){
+        rooms.get(roomNo-1).setLength(length);
+        rooms.get(roomNo-1).setLength(width);
 
     }
-    // public Room deleteRoom(int roomNo){
-        
-    // }
+    public Room deleteRoom(int roomNo){
+        return rooms.remove(roomNo-1);
+    }
     public void printRooms(){
         
         for(int i = 1; i <= rooms.size(); i++){

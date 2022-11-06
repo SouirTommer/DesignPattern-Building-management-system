@@ -1,5 +1,6 @@
 
 import java.util.*;
+import Memento.Caretaker;
 
 public class main {
 
@@ -8,8 +9,9 @@ public class main {
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         Stack commands = new Stack();
+        Stack undos = new Stack();
         Stack redos = new Stack();
-        Stack unredoList = new Stack();
+
 
         //HashMap
         HashMap<Integer, Building> buildMap = new HashMap<>();
@@ -30,7 +32,10 @@ public class main {
         double roomLength;
         double roomWidth;
 
-        String input;
+        //Memento
+
+        String Userinput;
+        String UserCommandinput;
 
         while (true) {
             System.out.println("");
@@ -38,16 +43,16 @@ public class main {
             System.out.println("Please enter command: [a|d|m|e|u|r|l|x]");
             System.out.println(
                     "a = add building, d = display buildings, m = modify building, e = edit rooms, u = undo, r = redo, l = list undo/redo, x = exit system");
-            input = sc.nextLine();
+            Userinput = sc.nextLine();
 
-            switch (input) {
+            switch (Userinput) {
                 
                 case "a":
 
                     System.out.println("Enter Building Type (a=Apartment/h=House):");
-                    input = sc.nextLine();
+                    Userinput = sc.nextLine();
 
-                    switch (input) {
+                    switch (Userinput) {
                         case "a":
 
                             System.out.print("Building No.: ");
@@ -118,10 +123,10 @@ public class main {
 
                 case "d":
                     System.out.println("Enter Building No. (* to display all):");
-                    input = sc.nextLine();
+                    Userinput = sc.nextLine();
 
-                        if(input.equals("*")){
-                            //oh my god, treemap is crazy
+                        if(Userinput.equals("*")){
+
                             Map<Integer, Building> sorted = new TreeMap<>(buildMap);
                             
                             for (Map.Entry i : sorted.entrySet()) {
@@ -129,15 +134,63 @@ public class main {
                                 System.out.println(sorted.get(i.getKey()).toString());
                               }
                         } else{
-                            buildMap.get(Integer.parseInt(input)).printBuilding();
+                            buildMap.get(Integer.parseInt(Userinput)).printBuilding();
                         }
 
 
                     break;
 
                 case "m":
+                    //coming soon
+
                     break;
                 case "e":
+                    System.out.print("Building No.:");
+                    buildingNo = sc.nextInt();
+                    buildMap.get(buildingNo).printBuilding();
+
+                    System.out.println("");
+                    System.out.println("Please enter command: [a|d|m]");
+                    System.out.println("a = add room, d = delete room, m = modify room");
+                    Userinput = sc.nextLine();
+                    
+                        if(Userinput.equals("a")){
+
+                            System.out.print("Length: ");
+                            roomLength = sc.nextDouble();
+
+                            System.out.print("Width: ");
+                            roomWidth = sc.nextDouble();
+                            System.out.println("Updated Building:");
+                            buildMap.get(buildingNo).addRoom(roomLength, roomWidth);
+                            buildMap.get(buildingNo).printBuilding();
+                        }
+
+                        if(Userinput.equals("d")){
+
+                            System.out.print("Room No.: ");
+                            roomNo = sc.nextInt();
+
+                            System.out.println("Updated Building:");
+                            buildMap.get(buildingNo).deleteRoom(roomNo);
+                            buildMap.get(buildingNo).printBuilding();
+                        }
+                        if(Userinput.equals("m")){
+
+                            System.out.print("Room No.: ");
+                            roomNo = sc.nextInt();
+
+                            System.out.print("Length: ");
+                            roomLength = sc.nextDouble();
+
+                            System.out.print("Width: ");
+                            roomWidth = sc.nextDouble();
+
+                            System.out.println("Updated Building:");
+                            buildMap.get(buildingNo).modifyRoom(roomNo, roomLength, roomWidth);
+                            buildMap.get(buildingNo).printBuilding();
+                            
+                        }
                     break;
                 case "u":
                     break;

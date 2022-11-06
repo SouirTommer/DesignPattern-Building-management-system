@@ -12,7 +12,7 @@ public class House extends Building{
         return noOfFloors;
     }
     public void modifyBuilding(){
-
+        
     }
     public void printBuilding(){
         System.out.println("Building No: "+super.getId());
