@@ -15,7 +15,9 @@ public class House extends Building{
 
     }
     public void printBuilding(){
-
+        System.out.println("Building No: "+super.getId());
+        System.out.println("No of Floors: "+noOfFloors);
+        
     }
     public String toString(){
         return "";

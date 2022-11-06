@@ -8,13 +8,13 @@ public class Apartment extends Building{
         this.supportStaff = supportStaff;
     }
     public void setMonthlyRental(double monthlyRental){
-
+        this.monthlyRental = monthlyRental;
     }
     public double getMonthlyRental(){
         return this.monthlyRental;
     }
-    public void setSupportStaff(String supperStaff){
-        
+    public void setSupportStaff(String supportStaff){
+        this.supportStaff = supportStaff;
     }
     public String getSupportStaff(){
         return this.supportStaff;
@@ -23,6 +23,9 @@ public class Apartment extends Building{
 
     }
     public void printBuilding(){
+        System.out.println("Building No: "+super.getId());
+        System.out.println("Support Staff: "+supportStaff);
+        System.out.println("Monthly Rental: "+monthlyRental);
 
     }
     public String toString(){

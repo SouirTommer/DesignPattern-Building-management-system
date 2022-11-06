@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public abstract class Building{
     private int id;
-    private ArrayList<Room> rooms = new ArrayList<>(noOfRooms);
+    private ArrayList<Room> rooms;
 
     public Building(int id, int noOfRooms){
         this.id = id;
-        //noOfRooms=10;
+        this.rooms = new ArrayList<Room>(noOfRooms);
     }
 
     public int getId(){
@@ -15,21 +15,27 @@ public abstract class Building{
     public ArrayList<Room> getRooms(){
         return this.rooms;
     }
+    
     public Room addRoom(double length, double width){
-        for (int i = 1; i <= noOfRooms ; i++){
-            Room roomId = new Room(length, width);
-            rooms.add(roomId);
-        }
-        return rooms;
+
+        Room roomId = new Room(length, width);
+        rooms.add(roomId);
+        return roomId;
     }
     public void modifyRoom(int roomNo, double length, double width){
 
     }
-    public Room deleteRoom(int roomNo){
-
-    }
+    // public Room deleteRoom(int roomNo){
+        
+    // }
     public void printRooms(){
-        System.out.print("Room No.: " + id);
+        
+        for(int i = 1; i <= rooms.size(); i++){
+            Room room = rooms.get(i-1);
+            System.out.println("Room No.: " + i + room);
+
+        }
+        
     }
     public int getRoomQty(){
         return rooms.size();
