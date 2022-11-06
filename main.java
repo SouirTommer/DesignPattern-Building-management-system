@@ -80,7 +80,6 @@ public class main {
 
                             System.out.println("New Building Added:");
                             ApartmentBuilding.printBuilding();
-                            ApartmentBuilding.printRooms();
                             sc.nextLine();
                             break;
 
@@ -111,7 +110,6 @@ public class main {
 
                             System.out.println("New Building Added:");
                             HouseBuilding.printBuilding();
-                            HouseBuilding.printRooms();
                             sc.nextLine();
                             break;
                     }
@@ -123,12 +121,15 @@ public class main {
                     input = sc.nextLine();
 
                         if(input.equals("*")){
-                            for (Map.Entry i : buildMap.entrySet()) {
-                                buildMap.get(i.getKey()).printBuilding();
+                            //oh my god, treemap is crazy
+                            Map<Integer, Building> sorted = new TreeMap<>(buildMap);
+                            
+                            for (Map.Entry i : sorted.entrySet()) {
+                                
+                                System.out.println(sorted.get(i.getKey()).toString());
                               }
                         } else{
                             buildMap.get(Integer.parseInt(input)).printBuilding();
-                            buildMap.get(Integer.parseInt(input)).printRooms();
                         }
 
 

@@ -26,10 +26,11 @@ public class Apartment extends Building{
         System.out.println("Building No: "+super.getId());
         System.out.println("Support Staff: "+supportStaff);
         System.out.println("Monthly Rental: "+monthlyRental);
+        super.printRooms();
 
     }
     public String toString(){
-        return "Apartment";
+        return "Building No.: "+super.getId()+", Support Staff: "+supportStaff+", Monthly Retal: "+monthlyRental;
     }
 
 }
