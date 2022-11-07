@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public abstract class Building{
     private int id;
@@ -42,7 +42,7 @@ public abstract class Building{
     public int getRoomQty(){
         return rooms.size();
     }
-    public abstract void modifyBuilding();
+    public abstract void modifyBuilding(Scanner sc);
     public abstract void printBuilding();
 
 }

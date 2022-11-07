@@ -141,11 +141,14 @@ public class main {
                     break;
 
                 case "m":
-                    //coming soon
+                    System.out.print("Building No.: ");
+                    buildingNo = sc.nextInt();
+                    buildMap.get(buildingNo).toString();
+                    buildMap.get(buildingNo).modifyBuilding(sc);
 
                     break;
                 case "e":
-                    System.out.print("Building No.:");
+                    System.out.print("Building No.: ");
                     buildingNo = sc.nextInt();
                     buildMap.get(buildingNo).printBuilding();
 
