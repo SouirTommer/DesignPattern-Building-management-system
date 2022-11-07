@@ -9,7 +9,7 @@ public class Room{
     public void setLength(double length){
         this.length = length;
     }
-    public void setWdith(double width){
+    public void setWidth(double width){
         this.width = width;
     }
     public double getLength(){

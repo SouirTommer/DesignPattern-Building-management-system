@@ -152,6 +152,7 @@ public class main {
                     System.out.println("");
                     System.out.println("Please enter command: [a|d|m]");
                     System.out.println("a = add room, d = delete room, m = modify room");
+                    sc.nextLine();
                     Userinput = sc.nextLine();
                     
                         if(Userinput.equals("a")){
@@ -191,6 +192,7 @@ public class main {
                             buildMap.get(buildingNo).printBuilding();
                             
                         }
+                        sc.nextLine();
                     break;
                 case "u":
                     break;

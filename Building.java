@@ -24,7 +24,7 @@ public abstract class Building{
     }
     public void modifyRoom(int roomNo, double length, double width){
         rooms.get(roomNo-1).setLength(length);
-        rooms.get(roomNo-1).setLength(width);
+        rooms.get(roomNo-1).setWidth(width);
 
     }
     public Room deleteRoom(int roomNo){
