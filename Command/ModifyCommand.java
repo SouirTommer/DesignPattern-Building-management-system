@@ -19,6 +19,7 @@ public class ModifyCommand implements Command {
         int buildingNo = sc.nextInt();
         buildMap.get(buildingNo).toString();
         buildMap.get(buildingNo).modifyBuilding(sc);
+        
     }
 
     public void undo() {

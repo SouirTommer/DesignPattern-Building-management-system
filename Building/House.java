@@ -18,6 +18,7 @@ public class House extends Building{
         setFloors(sc.nextInt());
         System.out.println("Building is modified:");
         System.out.println(toString());
+        sc.nextLine();
     }
     public void printBuilding(){
         System.out.println("Building No: "+super.getId());

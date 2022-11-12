@@ -11,28 +11,11 @@ public class main {
     public static Scanner sc = new Scanner(System.in);
     public static HashMap<Integer, Building> buildMap = new HashMap<>();
 
-    public static void main(String[] args)
-            throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         Stack commands = new Stack();
         Stack undos = new Stack();
         Stack redos = new Stack();
-
-        // For Building (Apartment + House)
-        int buildingNo;
-        int numberOfRooms;
-
-        // For Apartment
-        double monthlyRental;
-        String supportStaff = "";
-
-        // For House
-        int numberOfFloors;
-
-        // Room
-        int roomNo;
-        double roomLength;
-        double roomWidth;
 
         // Memento
 
