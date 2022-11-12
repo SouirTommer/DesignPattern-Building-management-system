@@ -32,4 +32,13 @@ public class HouseFactory implements BuildingFactory {
         sc.nextLine();
         return HouseBuilding;
     }
+    
+    public void ModifyBuilding(Scanner sc, House house) {
+        System.out.print("No. of Floors: ");
+        house.setFloors(sc.nextInt());
+        System.out.println("Building is modified: ");
+        System.out.println(toString());
+        sc.nextLine();
+
+    }
 }
