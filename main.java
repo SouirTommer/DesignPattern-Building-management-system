@@ -82,56 +82,11 @@ public class main {
                     command = new ModifyCommand(sc, buildMap);
                     command.execute();
                     break;
-                
+
                 case "e":
-                    System.out.print("Building No.: ");
-                    buildingNo = sc.nextInt();
-                    buildMap.get(buildingNo).printBuilding();
+                    command = new EditroomsCommand(sc, buildMap);
+                    command.execute();
 
-                    System.out.println("");
-                    System.out.println("Please enter command: [a|d|m]");
-                    System.out.println("a = add room, d = delete room, m = modify room");
-                    sc.nextLine();
-                    Userinput = sc.nextLine();
-
-                    if (Userinput.equals("a")) {
-
-                        System.out.print("Length: ");
-                        roomLength = sc.nextDouble();
-
-                        System.out.print("Width: ");
-                        roomWidth = sc.nextDouble();
-                        System.out.println("Updated Building:");
-                        buildMap.get(buildingNo).addRoom(roomLength, roomWidth);
-                        buildMap.get(buildingNo).printBuilding();
-                    }
-
-                    if (Userinput.equals("d")) {
-
-                        System.out.print("Room No.: ");
-                        roomNo = sc.nextInt();
-
-                        System.out.println("Updated Building:");
-                        buildMap.get(buildingNo).deleteRoom(roomNo);
-                        buildMap.get(buildingNo).printBuilding();
-                    }
-                    if (Userinput.equals("m")) {
-
-                        System.out.print("Room No.: ");
-                        roomNo = sc.nextInt();
-
-                        System.out.print("Length: ");
-                        roomLength = sc.nextDouble();
-
-                        System.out.print("Width: ");
-                        roomWidth = sc.nextDouble();
-
-                        System.out.println("Updated Building:");
-                        buildMap.get(buildingNo).modifyRoom(roomNo, roomLength, roomWidth);
-                        buildMap.get(buildingNo).printBuilding();
-
-                    }
-                    sc.nextLine();
                     break;
                 case "u":
                     break;
@@ -140,7 +95,8 @@ public class main {
                 case "l":
                     break;
                 case "x":
-                    System.exit(0);
+                    command = new ExitCommand();
+                    command.execute();
                     break;
                 default:
                     System.out.println("input error");
