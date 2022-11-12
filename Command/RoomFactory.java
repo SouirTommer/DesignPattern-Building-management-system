@@ -3,13 +3,13 @@ package Command;
 import java.util.*;
 import Building.*;
 
-public class EditRoomFactory implements CommandFactory {
+public class RoomFactory implements CommandFactory {
     Stack commands;
     Scanner sc;
     HashMap<Integer, Building> buildMap;
     
 
-    public EditRoomFactory(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands) {
+    public RoomFactory(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands) {
         this.sc = sc;
         this.buildMap = buildMap;
         this.commands = commands;

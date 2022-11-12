@@ -20,7 +20,6 @@ public class main {
 
         // Memento
         String Userinput;
-        String UserCommandinput;
 
         Command command;
         //HasMap for open close
@@ -29,7 +28,7 @@ public class main {
         f.put("a", new CreateBuildingCommandFactory(sc,buildMap,commands));
         f.put("d", new DisplayCommandFactory(sc,buildMap));
         // f.put("m", new ModifyCommandFactory());
-        // f.put("e", new EditCommandFactoru());
+        f.put("e", new RoomFactory(sc,buildMap,commands));
         f.put("u", new UndoCommandFactory(commands,redos));
         f.put("r", new RedoCommandFactory(commands,redos));
         f.put("l", new ListUndoRedoCommandFactory(commands,redos));
@@ -50,10 +49,10 @@ public class main {
                     command.execute();
                     break;
 
-                case "e": // Edit Rooms Command
-                    command = new EditroomsCommand(sc, buildMap);
-                    command.execute();
-                    break;
+                // case "e": // Edit Rooms Command
+                //     command = new EditroomsCommand(sc, buildMap);
+                //     command.execute();
+                //     break;
 
                 default:
                     // System.out.println("input error");
