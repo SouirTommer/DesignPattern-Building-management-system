@@ -35,36 +35,41 @@ public class main {
 
             switch (Userinput) {
 
-                case "a": //Add Building Command
-                    command = new CreateBuildingCommand(sc,buildMap);
+                case "a": // Add Building Command
+                    command = new CreateBuildingCommandFactory(sc, buildMap, commands).createCommand();
                     command.execute();
                     break;
 
-                case "d": //Display Building Command
+                case "d": // Display Building Command
                     command = new DisplayCommand(sc, buildMap);
                     command.execute();
                     break;
 
-                case "m": //Modify Building Command
+                case "m": // Modify Building Command
                     command = new ModifyCommand(sc, buildMap);
                     command.execute();
                     break;
 
-                case "e": //Edit Rooms Command
+                case "e": // Edit Rooms Command
                     command = new EditroomsCommand(sc, buildMap);
                     command.execute();
                     break;
 
-                case "u": //Undo Command
+                case "u": // Undo Command
+                    command = new UndoCommand(commands, redos);
+                    command.execute();
                     break;
 
-                case "r": //Redo Command
+                case "r": // Redo Command
+                    command = new RedoCommand(commands, redos);
+                    command.execute();
                     break;
 
-                case "l": //List Undo & Redo Command
+                case "l": // List Undo & Redo Command
+                    System.out.println(commands.toString());
                     break;
 
-                case "x": //Exit Command
+                case "x": // Exit Command
                     command = new ExitCommand();
                     command.execute();
                     break;

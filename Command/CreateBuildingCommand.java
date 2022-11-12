@@ -8,10 +8,12 @@ public class CreateBuildingCommand implements Command {
     Scanner sc;
     HashMap<Integer, Building> buildMap;
     Command command;
+    Stack commands;
 
-    public CreateBuildingCommand(Scanner sc, HashMap<Integer, Building> buildMap) {
+    public CreateBuildingCommand(Scanner sc, HashMap<Integer, Building> buildMap,Stack commands) {
         this.sc = sc;
         this.buildMap = buildMap;
+        this.commands = commands;
     }
 
     public void execute() {
@@ -21,12 +23,12 @@ public class CreateBuildingCommand implements Command {
 
         switch (Userinput) {
             case "a":
-                command = new CreateApartmentCommand(sc, buildMap);
+                command = new CreateApartmentCommandFactory(sc, buildMap, commands).createCommand();
                 command.execute();
                 break;
 
             case "h":
-                command = new CreateHouseCommand(sc, buildMap);
+                command = new CreateHouseCommandFactory(sc, buildMap,commands).createCommand();
                 command.execute();
                 break;
         }
