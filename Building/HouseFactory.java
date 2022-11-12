@@ -15,7 +15,6 @@ public class HouseFactory implements BuildingFactory {
 
         Building HouseBuilding = new House(buildingNo, numberOfRooms, numberOfFloors);
         
-
         for (int i = 1; i <= numberOfRooms; i++) {
             System.out.println("Room No. " + i + " :");
 
