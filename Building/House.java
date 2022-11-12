@@ -1,3 +1,4 @@
+package Building;
 import java.util.*;
 public class House extends Building{
     private int noOfFloors;

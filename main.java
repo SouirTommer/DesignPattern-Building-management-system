@@ -1,5 +1,9 @@
 
 import java.util.*;
+
+import Building.Apartment;
+import Building.Building;
+import Building.House;
 import Memento.Caretaker;
 
 public class main {

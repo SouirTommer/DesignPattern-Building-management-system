@@ -1,3 +1,4 @@
+package Building;
 public class Room{
     private double length;
     private double width;

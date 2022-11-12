@@ -1,3 +1,4 @@
+package Building;
 import java.util.*;
 public class Apartment extends Building{
     private double monthlyRental;
