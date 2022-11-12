@@ -39,6 +39,8 @@ public class main {
         String Userinput;
         String UserCommandinput;
 
+        // Declaring Command
+        Command command;
         // Declaring factory
         BuildingFactory apf = new ApartmentFactory();
         BuildingFactory hf = new HouseFactory();
@@ -72,30 +74,15 @@ public class main {
                     break;
 
                 case "d":
-                    System.out.println("Enter Building No. (* to display all):");
-                    Userinput = sc.nextLine();
-
-                    if (Userinput.equals("*")) {
-
-                        Map<Integer, Building> sorted = new TreeMap<>(buildMap);
-
-                        for (Map.Entry i : sorted.entrySet()) {
-
-                            System.out.println(sorted.get(i.getKey()).toString());
-                        }
-                    } else {
-                        buildMap.get(Integer.parseInt(Userinput)).printBuilding();
-                    }
-
+                    command = new DisplayCommand(sc, buildMap);
+                    command.execute();
                     break;
 
                 case "m":
-                    System.out.print("Building No.: ");
-                    buildingNo = sc.nextInt();
-                    buildMap.get(buildingNo).toString();
-                    buildMap.get(buildingNo).modifyBuilding(sc);
-
+                    command = new ModifyCommand(sc, buildMap);
+                    command.execute();
                     break;
+                
                 case "e":
                     System.out.print("Building No.: ");
                     buildingNo = sc.nextInt();
