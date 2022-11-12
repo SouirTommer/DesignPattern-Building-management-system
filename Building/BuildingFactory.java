@@ -4,6 +4,6 @@ import java.util.Scanner;
 
 public interface BuildingFactory {
 
-    public abstract Building createBuilding(Scanner sc, RoomFactory rf);
+    public abstract Building createBuilding(Scanner sc);
 
   }
