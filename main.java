@@ -1,24 +1,23 @@
 
 import java.util.*;
 
-import Building.Apartment;
-import Building.Building;
-import Building.House;
-import Memento.Caretaker;
+import javax.print.event.PrintEvent;
+
+import Building.*;
+import Command.*;
+import Memento.*;
 
 public class main {
 
     public static Scanner sc = new Scanner(System.in);
+    public static HashMap<Integer, Building> buildMap = new HashMap<>();
 
-    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public static void main(String[] args)
+            throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         Stack commands = new Stack();
         Stack undos = new Stack();
         Stack redos = new Stack();
-
-
-        //HashMap
-        HashMap<Integer, Building> buildMap = new HashMap<>();
 
         // For Building (Apartment + House)
         int buildingNo;
@@ -36,10 +35,14 @@ public class main {
         double roomLength;
         double roomWidth;
 
-        //Memento
+        // Memento
 
         String Userinput;
         String UserCommandinput;
+
+        // Declaring factory
+        BuildingFactory apf = new ApartmentFactory();
+        BuildingFactory hf = new HouseFactory();
 
         while (true) {
             System.out.println("");
@@ -50,7 +53,7 @@ public class main {
             Userinput = sc.nextLine();
 
             switch (Userinput) {
-                
+
                 case "a":
 
                     System.out.println("Enter Building Type (a=Apartment/h=House):");
@@ -58,89 +61,32 @@ public class main {
 
                     switch (Userinput) {
                         case "a":
-
-                            System.out.print("Building No.: ");
-                            buildingNo = sc.nextInt();
-
-                            System.out.print("Monthly Rental: ");
-                            monthlyRental = sc.nextDouble();
-
-                            System.out.print("Support Staff: ");
-                            sc.nextLine();
-                            supportStaff += sc.nextLine();
-
-                            System.out.print("Number of rooms: ");
-                            numberOfRooms = sc.nextInt();
-
-                            Building ApartmentBuilding = new Apartment(buildingNo, numberOfRooms, monthlyRental, supportStaff);
-                            buildMap.put(buildingNo, ApartmentBuilding);
-
-                            for (int i = 1; i <= numberOfRooms; i++) {
-                                System.out.println("Room No. " + i + " :");
-
-                                System.out.print("Length: ");
-                                roomLength = sc.nextDouble();
-
-                                System.out.print("Width: ");
-                                roomWidth = sc.nextDouble();
-
-                                ApartmentBuilding.addRoom(roomLength, roomWidth);
-                            }
-
-                            System.out.println("New Building Added:");
-                            ApartmentBuilding.printBuilding();
-                            sc.nextLine();
+                            Building apartment = apf.createBuilding(sc);
+                            buildMap.put(apartment.getId(), apartment);
                             break;
 
                         case "h":
-                            System.out.print("Building No.: ");
-                            buildingNo = sc.nextInt();
-
-                            System.out.print("No. of Floors: ");
-                            numberOfFloors = sc.nextInt();
-
-                            System.out.print("Number of rooms: ");
-                            numberOfRooms = sc.nextInt();
-
-                            Building HouseBuilding = new House(buildingNo, numberOfRooms, numberOfFloors);
-                            buildMap.put(buildingNo, HouseBuilding);
-
-                            for (int i = 1; i <= numberOfRooms; i++) {
-                                System.out.println("Room No. " + i + " :");
-
-                                System.out.print("Length: ");
-                                roomLength = sc.nextDouble();
-
-                                System.out.print("Width: ");
-                                roomWidth = sc.nextDouble();
-
-                                HouseBuilding.addRoom(roomLength, roomWidth);
-                            }
-
-                            System.out.println("New Building Added:");
-                            HouseBuilding.printBuilding();
-                            sc.nextLine();
+                            Building house = hf.createBuilding(sc);
+                            buildMap.put(house.getId(), house);
                             break;
                     }
                     break;
-                    
 
                 case "d":
                     System.out.println("Enter Building No. (* to display all):");
                     Userinput = sc.nextLine();
 
-                        if(Userinput.equals("*")){
+                    if (Userinput.equals("*")) {
 
-                            Map<Integer, Building> sorted = new TreeMap<>(buildMap);
-                            
-                            for (Map.Entry i : sorted.entrySet()) {
-                                
-                                System.out.println(sorted.get(i.getKey()).toString());
-                              }
-                        } else{
-                            buildMap.get(Integer.parseInt(Userinput)).printBuilding();
+                        Map<Integer, Building> sorted = new TreeMap<>(buildMap);
+
+                        for (Map.Entry i : sorted.entrySet()) {
+
+                            System.out.println(sorted.get(i.getKey()).toString());
                         }
-
+                    } else {
+                        buildMap.get(Integer.parseInt(Userinput)).printBuilding();
+                    }
 
                     break;
 
@@ -161,45 +107,45 @@ public class main {
                     System.out.println("a = add room, d = delete room, m = modify room");
                     sc.nextLine();
                     Userinput = sc.nextLine();
-                    
-                        if(Userinput.equals("a")){
 
-                            System.out.print("Length: ");
-                            roomLength = sc.nextDouble();
+                    if (Userinput.equals("a")) {
 
-                            System.out.print("Width: ");
-                            roomWidth = sc.nextDouble();
-                            System.out.println("Updated Building:");
-                            buildMap.get(buildingNo).addRoom(roomLength, roomWidth);
-                            buildMap.get(buildingNo).printBuilding();
-                        }
+                        System.out.print("Length: ");
+                        roomLength = sc.nextDouble();
 
-                        if(Userinput.equals("d")){
+                        System.out.print("Width: ");
+                        roomWidth = sc.nextDouble();
+                        System.out.println("Updated Building:");
+                        buildMap.get(buildingNo).addRoom(roomLength, roomWidth);
+                        buildMap.get(buildingNo).printBuilding();
+                    }
 
-                            System.out.print("Room No.: ");
-                            roomNo = sc.nextInt();
+                    if (Userinput.equals("d")) {
 
-                            System.out.println("Updated Building:");
-                            buildMap.get(buildingNo).deleteRoom(roomNo);
-                            buildMap.get(buildingNo).printBuilding();
-                        }
-                        if(Userinput.equals("m")){
+                        System.out.print("Room No.: ");
+                        roomNo = sc.nextInt();
 
-                            System.out.print("Room No.: ");
-                            roomNo = sc.nextInt();
+                        System.out.println("Updated Building:");
+                        buildMap.get(buildingNo).deleteRoom(roomNo);
+                        buildMap.get(buildingNo).printBuilding();
+                    }
+                    if (Userinput.equals("m")) {
 
-                            System.out.print("Length: ");
-                            roomLength = sc.nextDouble();
+                        System.out.print("Room No.: ");
+                        roomNo = sc.nextInt();
 
-                            System.out.print("Width: ");
-                            roomWidth = sc.nextDouble();
+                        System.out.print("Length: ");
+                        roomLength = sc.nextDouble();
 
-                            System.out.println("Updated Building:");
-                            buildMap.get(buildingNo).modifyRoom(roomNo, roomLength, roomWidth);
-                            buildMap.get(buildingNo).printBuilding();
-                            
-                        }
-                        sc.nextLine();
+                        System.out.print("Width: ");
+                        roomWidth = sc.nextDouble();
+
+                        System.out.println("Updated Building:");
+                        buildMap.get(buildingNo).modifyRoom(roomNo, roomLength, roomWidth);
+                        buildMap.get(buildingNo).printBuilding();
+
+                    }
+                    sc.nextLine();
                     break;
                 case "u":
                     break;
