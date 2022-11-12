@@ -11,22 +11,19 @@ public class main {
     public static Scanner sc = new Scanner(System.in);
     public static HashMap<Integer, Building> buildMap = new HashMap<>();
 
-    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public static void main(String[] args)
+            throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         Stack commands = new Stack();
         Stack undos = new Stack();
         Stack redos = new Stack();
 
         // Memento
-
         String Userinput;
         String UserCommandinput;
 
         // Declaring Command
         Command command;
-        // Declaring factory
-        BuildingFactory apf = new ApartmentFactory();
-        BuildingFactory hf = new HouseFactory();
 
         while (true) {
             System.out.println("");
@@ -38,49 +35,40 @@ public class main {
 
             switch (Userinput) {
 
-                case "a":
-
-                    System.out.println("Enter Building Type (a=Apartment/h=House):");
-                    Userinput = sc.nextLine();
-
-                    switch (Userinput) {
-                        case "a":
-                            Building apartment = apf.createBuilding(sc);
-                            buildMap.put(apartment.getId(), apartment);
-                            break;
-
-                        case "h":
-                            Building house = hf.createBuilding(sc);
-                            buildMap.put(house.getId(), house);
-                            break;
-                    }
+                case "a": //Add Building Command
+                    command = new CreateBuildingCommand(sc,buildMap);
+                    command.execute();
                     break;
 
-                case "d":
+                case "d": //Display Building Command
                     command = new DisplayCommand(sc, buildMap);
                     command.execute();
                     break;
 
-                case "m":
+                case "m": //Modify Building Command
                     command = new ModifyCommand(sc, buildMap);
                     command.execute();
                     break;
 
-                case "e":
+                case "e": //Edit Rooms Command
                     command = new EditroomsCommand(sc, buildMap);
                     command.execute();
+                    break;
 
+                case "u": //Undo Command
                     break;
-                case "u":
+
+                case "r": //Redo Command
                     break;
-                case "r":
+
+                case "l": //List Undo & Redo Command
                     break;
-                case "l":
-                    break;
-                case "x":
+
+                case "x": //Exit Command
                     command = new ExitCommand();
                     command.execute();
                     break;
+
                 default:
                     System.out.println("input error");
                     break;
