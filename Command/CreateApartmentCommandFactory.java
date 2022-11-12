@@ -2,7 +2,6 @@ package Command;
 
 import java.util.*;
 import Building.*;
-import Memento.*;
 
 public class CreateApartmentCommandFactory implements CommandFactory {
     Stack commands;

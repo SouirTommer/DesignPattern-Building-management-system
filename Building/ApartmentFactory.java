@@ -21,7 +21,7 @@ public class ApartmentFactory implements BuildingFactory {
         int numberOfRooms = sc.nextInt();
 
         Building ap = new Apartment(buildingNo, numberOfRooms, monthlyRental, supportStaff);
-        
+
         for (int i = 1; i <= numberOfRooms; i++) {
             System.out.println("Room No. " + i + " :");
             System.out.print("Length: ");
@@ -36,6 +36,17 @@ public class ApartmentFactory implements BuildingFactory {
         sc.nextLine();
 
         return ap;
+
+    }
+
+    public void ModifyBuilding(Scanner sc, Apartment apartment) {
+        System.out.print("Modify Monthly Rental.: ");
+        apartment.setMonthlyRental(sc.nextDouble());
+        System.out.print("Modify Support Staff.: ");
+        sc.nextLine();
+        apartment.setSupportStaff(sc.nextLine());
+        System.out.println("Building is modified: ");
+        System.out.println(toString());
 
     }
 }

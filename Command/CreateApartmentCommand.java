@@ -1,7 +1,6 @@
 package Command;
 
 import Building.*;
-import Memento.*;
 import java.util.*;
 
 public class CreateApartmentCommand implements Command {

@@ -22,9 +22,19 @@ public class main {
         String Userinput;
         String UserCommandinput;
 
-        // Declaring Command
         Command command;
+        //HasMap for open close
+        HashMap<String, CommandFactory> f = new HashMap<>();
 
+        f.put("a", new CreateBuildingCommandFactory(sc,buildMap,commands));
+        f.put("d", new DisplayCommandFactory(sc,buildMap));
+        // f.put("m", new ModifyCommandFactory());
+        // f.put("e", new EditCommandFactoru());
+        f.put("u", new UndoCommandFactory(commands,redos));
+        f.put("r", new RedoCommandFactory(commands,redos));
+        f.put("l", new ListUndoRedoCommandFactory(commands,redos));
+        f.put("x", new ExitCommandFactory());
+        
         while (true) {
             System.out.println("");
             System.out.println("Building Management System (BMS)");
@@ -34,16 +44,6 @@ public class main {
             Userinput = sc.nextLine();
 
             switch (Userinput) {
-
-                case "a": // Add Building Command
-                    command = new CreateBuildingCommandFactory(sc, buildMap, commands).createCommand();
-                    command.execute();
-                    break;
-
-                case "d": // Display Building Command
-                    command = new DisplayCommand(sc, buildMap);
-                    command.execute();
-                    break;
 
                 case "m": // Modify Building Command
                     command = new ModifyCommand(sc, buildMap);
@@ -55,29 +55,12 @@ public class main {
                     command.execute();
                     break;
 
-                case "u": // Undo Command
-                    command = new UndoCommand(commands, redos);
-                    command.execute();
-                    break;
-
-                case "r": // Redo Command
-                    command = new RedoCommand(commands, redos);
-                    command.execute();
-                    break;
-
-                case "l": // List Undo & Redo Command
-                    System.out.println(commands.toString());
-                    break;
-
-                case "x": // Exit Command
-                    command = new ExitCommand();
-                    command.execute();
-                    break;
-
                 default:
-                    System.out.println("input error");
+                    // System.out.println("input error");
                     break;
             }
+            command = f.get(Userinput).createCommand();
+            command.execute();
         }
     }
 }
