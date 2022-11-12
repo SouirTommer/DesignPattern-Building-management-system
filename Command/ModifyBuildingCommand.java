@@ -5,11 +5,11 @@ import Memento.*;
 
 import java.util.*;
 
-public class ModifyCommand implements Command {
+public class ModifyBuildingCommand implements Command {
     HashMap<Integer, Building> buildMap;
     Scanner sc;
 
-    public ModifyCommand(Scanner sc, HashMap<Integer, Building> buildMap) {
+    public ModifyBuildingCommand(Scanner sc, HashMap<Integer, Building> buildMap) {
         this.sc = sc;
         this.buildMap = buildMap;
     }
