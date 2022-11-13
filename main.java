@@ -1,7 +1,5 @@
 import java.util.*;
 
-import javax.print.event.PrintEvent;
-
 import Building.*;
 import Command.*;
 import Memento.*;
@@ -44,6 +42,7 @@ public class main {
 
             command = f.get(Userinput).createCommand();
             command.execute();
+
             // try {
             // command = f.get(Userinput).createCommand();
             // command.execute();

@@ -21,6 +21,7 @@ public class ListUndoRedoCommand implements Command {
 
     public void execute() {
         System.out.println("Undo List：");
+<<<<<<< HEAD
         // if(!commands.isEmpty()){
         // System.out.println(commands.toString());
         // }else{
@@ -29,14 +30,41 @@ public class ListUndoRedoCommand implements Command {
 
         if (!caretaker.getunCommand().isEmpty()) {
             System.out.println(caretaker.getunCommand());
+=======
+        if (!commands.isEmpty()) {
+            Iterator<Command> iter = commands.iterator();
+            while (iter.hasNext()) {
+                Command c = iter.next();
+                if (c instanceof CreateApartmentCommand) {
+                    System.out.println("Add Building : "+((CreateApartmentCommand) c).getApartment().toString());
+                }
+                if (c instanceof CreateHouseCommand) {
+                    System.out.println("Add Building : "+((CreateHouseCommand) c).getHouse().toString());
+                }
+            }
+>>>>>>> 1b209cbe7108b28c5f6fe306eadcb987a07c3982
         } else {
             System.out.println("Empty Undo List");
         }
 
         System.out.println("");
         System.out.println("Redo List：");
+<<<<<<< HEAD
         if (!caretaker.getreCommand().isEmpty()) {
             System.out.println(caretaker.getreCommand());
+=======
+        if (!redos.isEmpty()) {
+            Iterator<Command> iter = redos.iterator();
+            while (iter.hasNext()) {
+                Command c = iter.next();
+                if (c instanceof CreateApartmentCommand) {
+                    System.out.println("Add Building : "+((CreateApartmentCommand) c).getApartment().toString());
+                }
+                if (c instanceof CreateHouseCommand) {
+                    System.out.println("Add Building : "+((CreateHouseCommand) c).getHouse().toString());
+                }
+            }
+>>>>>>> 1b209cbe7108b28c5f6fe306eadcb987a07c3982
         } else {
             System.out.println("Empty Redo List");
         }
