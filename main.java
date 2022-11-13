@@ -17,23 +17,24 @@ public class main {
         Stack commands = new Stack();
         Stack undos = new Stack();
         Stack redos = new Stack();
+        Caretaker ct = new Caretaker(buildMap);
 
         // Memento
         String Userinput;
 
         Command command;
-        //HasMap for open close
+        // HasMap for open close
         HashMap<String, CommandFactory> f = new HashMap<>();
 
-        f.put("a", new CreateBuildingCommandFactory(sc,buildMap,commands));
-        f.put("d", new DisplayCommandFactory(sc,buildMap));
-        f.put("m", new ModifyBuildingCommandFactory(sc,buildMap,commands));
-        f.put("e", new RoomFactory(sc,buildMap,commands));
-        f.put("u", new UndoCommandFactory(commands,redos));
-        f.put("r", new RedoCommandFactory(commands,redos));
-        f.put("l", new ListUndoRedoCommandFactory(commands,redos));
+        f.put("a", new CreateBuildingCommandFactory(sc, buildMap, commands, ct));
+        f.put("d", new DisplayCommandFactory(sc, buildMap));
+        f.put("m", new ModifyBuildingCommandFactory(sc, buildMap, commands));
+        f.put("e", new RoomFactory(sc, buildMap, commands));
+        f.put("u", new UndoCommandFactory(commands, redos, ct));
+        f.put("r", new RedoCommandFactory(commands, redos));
+        f.put("l", new ListUndoRedoCommandFactory(commands, redos, ct));
         f.put("x", new ExitCommandFactory());
-        
+
         while (true) {
             System.out.println("");
             System.out.println("Building Management System (BMS)");
@@ -42,22 +43,23 @@ public class main {
                     "a = add building, d = display buildings, m = modify building, e = edit rooms, u = undo, r = redo, l = list undo/redo, x = exit system");
             Userinput = sc.nextLine();
 
-            switch (Userinput) {
+            // switch (Userinput) {
 
-                case "m": // Modify Building Command
-                    command = new ModifyBuildingCommand(sc, buildMap);
-                    command.execute();
-                    break;
+            // case "m": // Modify Building Command
+            // command = new ModifyBuildingCommand(sc, buildMap);
+            // command.execute();
+            // break;
 
-                // case "e": // Edit Rooms Command
-                //     command = new EditroomsCommand(sc, buildMap);
-                //     command.execute();
-                //     break;
+            // // case "e": // Edit Rooms Command
+            // // command = new EditroomsCommand(sc, buildMap);
+            // // command.execute();
+            // // break;
 
-                default:
-                    // System.out.println("input error");
-                    break;
-            }
+            // default:
+            // // System.out.println("input error");
+            // break;
+            // }
+
             command = f.get(Userinput).createCommand();
             command.execute();
         }

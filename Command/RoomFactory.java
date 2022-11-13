@@ -2,12 +2,13 @@ package Command;
 
 import java.util.*;
 import Building.*;
+import Memento.Caretaker;
 
 public class RoomFactory implements CommandFactory {
     Stack commands;
     Scanner sc;
     HashMap<Integer, Building> buildMap;
-    
+    Caretaker caretaker;
 
     public RoomFactory(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands) {
         this.sc = sc;
@@ -27,16 +28,14 @@ public class RoomFactory implements CommandFactory {
         System.out.println("a = add room, d = delete room, m = modify room");
         String Userinput = sc.nextLine();
 
-
-        
         Command c = null;
-        if (Userinput.equals("a")){
-            c = new AddroomsCommand(sc, buildMap, buildingNo);
+        if (Userinput.equals("a")) {
+            c = new AddroomsCommand(sc, buildMap, buildingNo, caretaker);
         }
-        if (Userinput.equals("d")){
+        if (Userinput.equals("d")) {
             c = new DeleteroomsCommand(sc, buildMap, buildingNo);
         }
-        if (Userinput.equals("m")){
+        if (Userinput.equals("m")) {
             c = new ModifyroomsCommand(sc, buildMap, buildingNo);
         }
         commands.push(c);
