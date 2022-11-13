@@ -3,11 +3,10 @@ package Memento;
 import Building.*;
 import java.util.*;
 
-public class Memento {
+public class Memento implements MementoIF {
     private Building mbuilding;
     private int mbuildingNo;
     // common
-    // private ArrayList<Room> mrooms;
     // house
     private int mnoOfFloors;
     // apartment
