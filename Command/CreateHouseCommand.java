@@ -21,20 +21,17 @@ public class CreateHouseCommand implements Command {
         BuildingFactory bf = new HouseFactory();
         house = bf.createBuilding(sc);
         buildMap.put(house.getId(), house);
+        caretaker.clearRedoList();
         caretaker.saveBuidling(house, house.getId(), this.toString(), true);
 
     };
 
     public void undo() {
-        if (house != null) {
-            buildMap.remove(house.getId(), house);
-        }
+
     };
 
     public void redo() {
-        if (house != null) {
-            buildMap.put(house.getId(), house);
-        }
+
     };
 
     public Building getHouse() {

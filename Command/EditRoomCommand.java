@@ -2,25 +2,22 @@ package Command;
 
 import java.util.*;
 import Building.*;
-import Memento.Caretaker;
 
 public class EditRoomCommand implements Command {
     Scanner sc;
     HashMap<Integer, Building> buildMap;
-    Stack commands;
     int buildingNo;
     CommandFactory acf;
     CommandFactory dcf;
     CommandFactory mcf;
 
-    public EditRoomCommand(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands, int buildingNo) {
+    public EditRoomCommand(Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo) {
         this.sc = sc;
         this.buildMap = buildMap;
-        this.commands = commands;
         this.buildingNo = buildingNo;
-        acf = new AddroomsCommandFactory(sc, buildMap, commands, buildingNo);
-        dcf = new DeleteroomsCommandFactory(sc, buildMap, commands, buildingNo);
-        mcf = new ModifyroomsCommandFactory(sc, buildMap, commands, buildingNo);
+        acf = new AddroomsCommandFactory(sc, buildMap, buildingNo);
+        dcf = new DeleteroomsCommandFactory(sc, buildMap, buildingNo);
+        mcf = new ModifyroomsCommandFactory(sc, buildMap, buildingNo);
     }
 
     public void execute() {
@@ -40,7 +37,6 @@ public class EditRoomCommand implements Command {
             case "d":
                 dcf.createCommand().execute();
                 break;
-
             case "m":
                 mcf.createCommand().execute();
                 break;

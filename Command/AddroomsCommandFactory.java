@@ -22,9 +22,5 @@ public class AddroomsCommandFactory implements CommandFactory {
         return c;
     }
 
-    // public Command createCommand() {
-    // Command c = new AddroomsCommand(sc, buildMap, buildingNo);
-    // commands.push(c);
-    // return c;
-    // }
+
 }

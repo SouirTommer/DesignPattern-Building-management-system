@@ -42,11 +42,11 @@ public class Caretaker {
             }
             if (!unCommand.isEmpty()) {
                 String message = (String) unCommand.pop();
-                System.out.println("undo: " + message);
+                System.out.println("\nUndo: " + message);
                 reCommand.push(message);
             }
         } else {
-            System.out.println("Nothing Undo");
+            System.out.println("\nNothing to Undo");
         }
 
     }
@@ -57,7 +57,6 @@ public class Caretaker {
             Memento redom = (Memento) redoList.pop();
             Memento remember = new Memento(redom.getmbuilding(), redom.getmbuildingNo(), IsCreate);
             if (redom.getIsCreate()) {
-                System.out.println("redom");
                 undoList.push(redom); // pop redo list object to undo list
                 buildMap.put(redom.getmbuildingNo(), redom.getmbuilding()); // add back the toy in vector
             } else {
@@ -67,12 +66,12 @@ public class Caretaker {
 
             if (!reCommand.isEmpty()) {
                 String message = (String) reCommand.pop();
-                System.out.println(message);
+                System.out.println("\nRedo :" + message);
                 unCommand.push(message);
             }
 
         } else {
-            System.out.println("Nothing Redo");
+            System.out.println("\nNothing to Redo");
         }
     }
 
@@ -91,5 +90,10 @@ public class Caretaker {
 
     public Stack getUndoList() {
         return undoList;
+    }
+
+    public void clearRedoList() {
+        this.redoList.clear();
+        this.reCommand.clear();
     }
 }

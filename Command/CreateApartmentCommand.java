@@ -22,19 +22,16 @@ public class CreateApartmentCommand implements Command {
         BuildingFactory bf = new ApartmentFactory();
         this.apartment = bf.createBuilding(sc);
         buildMap.put(apartment.getId(), apartment);
+        caretaker.clearRedoList();
         caretaker.saveBuidling(apartment, apartment.getId(), this.toString(), true);
     };
 
     public void undo() {
-        if (apartment != null) {
-            buildMap.remove(apartment.getId(), apartment);
-        }
+
     };
 
     public void redo() {
-        if (apartment != null) {
-            buildMap.put(apartment.getId(), apartment);
-        }
+
     };
 
     public String toString() {

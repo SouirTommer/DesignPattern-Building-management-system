@@ -9,15 +9,14 @@ public class main {
     public static Scanner sc = new Scanner(System.in);
     public static HashMap<Integer, Building> buildMap = new HashMap<>();
 
-    public static void main(String[] args)
-            throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         // Memento
         Caretaker ct = new Caretaker(buildMap);
 
         // Declare Command
         Command command;
-        
+
         // HasMap for open close
         HashMap<String, CommandFactory> f = new HashMap<>();
 
@@ -38,15 +37,16 @@ public class main {
             System.out.println(
                     "a = add building, d = display buildings, m = modify building, e = edit rooms, u = undo, r = redo, l = list undo/redo, x = exit system");
             Userinput = sc.nextLine();
-            command = f.get(Userinput).createCommand();
-            command.execute();
-
-            // try {
+            
             // command = f.get(Userinput).createCommand();
             // command.execute();
-            // } catch (Exception e) {
-            // System.out.println("Wrong input");
-            // }
+
+            try {
+            command = f.get(Userinput).createCommand();
+            command.execute();
+            } catch (Exception e) {
+            System.out.println("Wrong input");
+            }
 
         }
     }
