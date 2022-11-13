@@ -7,17 +7,21 @@ public class Memento {
     private Building mbuilding;
     private int mbuildingNo;
     // common
-    private ArrayList<Room> mrooms;
+    // private ArrayList<Room> mrooms;
     // house
     private int mnoOfFloors;
     // apartment
     private String msupportStaff;
     private double mmonthlyRental;
+    // private int round;
+    private boolean IsCreate;
 
-    public Memento(Building building, int buildingNo) {
+    public Memento(Building building, int buildingNo, boolean IsCreate) {
         this.mbuildingNo = buildingNo;
-        this.mbuilding = building;
-        this.mrooms = mbuilding.getRooms();
+        mbuilding = building;
+        this.IsCreate = IsCreate;
+        // this.mrooms = mbuilding.getRooms();
+        // round = mrooms.size();
 
         if (mbuilding instanceof House) {
             this.mnoOfFloors = ((House) mbuilding).getFloors();
@@ -30,11 +34,6 @@ public class Memento {
 
     // restore the product
     public void restore() {
-        int round = mbuilding.getRoomQty();
-        for (int i = 0; i < round; i++) {
-            mbuilding.addRoom(this.mrooms.get(i).getLength(), this.mrooms.get(i).getWidth());
-        }
-        // Printing and display the elements in ArrayList
 
         if (mbuilding instanceof House) {
             ((House) mbuilding).setFloors(this.mnoOfFloors);
@@ -51,5 +50,9 @@ public class Memento {
 
     public int getmbuildingNo() {
         return this.mbuildingNo;
+    }
+
+    public boolean getIsCreate() {
+        return IsCreate;
     }
 }

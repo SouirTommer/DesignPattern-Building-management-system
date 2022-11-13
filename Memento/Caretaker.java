@@ -10,6 +10,7 @@ public class Caretaker {
     private Stack redoList; // a stack to store the commands which were undid (for redo)
     private LinkedList unCommand; // a LinkedList to store the undo commands String
     private LinkedList reCommand; // a LinkedList to store the redo commands String
+    private boolean IsCreate;
 
     public Caretaker(HashMap<Integer, Building> buildMap) {
         this.buildMap = buildMap;
@@ -21,8 +22,8 @@ public class Caretaker {
 
     // save the building state put commands message to list, check is it a create
     // commands
-    public void saveBuidling(Building building, int buildingNo, String message) {
-        undoList.push(new Memento(building, buildingNo));
+    public void saveBuidling(Building building, int buildingNo, String message, boolean IsCreate) {
+        undoList.push(new Memento(building, buildingNo, IsCreate));
         unCommand.push(message);
     }
 
@@ -30,16 +31,16 @@ public class Caretaker {
     public void undo() {
         if (!undoList.isEmpty()) {
             Memento undom = (Memento) undoList.pop();
-            Memento remember = new Memento(undom.getmbuilding(), undom.getmbuildingNo()); // save
-                                                                                          // toy
-                                                                                          // for
-                                                                                          // put in
-                                                                                          // redo
+            Memento remember = new Memento(undom.getmbuilding(), undom.getmbuildingNo(), IsCreate); // save
+            // toy
+            // for
+            // put in
+            // redo
             // if
             // this is not create commands
-            if ((undoList).size() > 1) {
+            if (undom.getIsCreate()) {
                 redoList.push(undom); // pop undo list object to redo list
-                buildMap.remove(undom.getmbuilding()); // remove the toy in vector
+                buildMap.remove(undom.getmbuildingNo());
             } else {
                 redoList.push(remember); // push a new memento to redolist
                 undom.restore(); // restore memento
@@ -59,8 +60,8 @@ public class Caretaker {
     public void redo() {
         if (!redoList.isEmpty()) {
             Memento redom = (Memento) redoList.pop();
-            Memento remember = new Memento(redom.getmbuilding(), redom.getmbuildingNo());
-            if (redoList.size() > 0) {
+            Memento remember = new Memento(redom.getmbuilding(), redom.getmbuildingNo(), IsCreate);
+            if (redom.getIsCreate()) {
                 System.out.println("redom");
                 undoList.push(redom); // pop redo list object to undo list
                 buildMap.put(redom.getmbuildingNo(), redom.getmbuilding()); // add back the toy in vector

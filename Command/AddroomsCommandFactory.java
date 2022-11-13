@@ -2,10 +2,7 @@ package Command;
 
 import java.util.*;
 import Building.*;
-<<<<<<< HEAD
 import Memento.Caretaker;
-=======
->>>>>>> cc44774567e21b7c1989585a0651e161d5d9e70f
 
 public class AddroomsCommandFactory implements CommandFactory {
     Scanner sc;
@@ -25,11 +22,13 @@ public class AddroomsCommandFactory implements CommandFactory {
 
     public Command createCommand() {
         Command c = new AddroomsCommand(sc, buildMap, buildingNo, caretaker);
+        commands.push(c);
+        return c;
     }
 
     // public Command createCommand() {
-    //     Command c = new AddroomsCommand(sc, buildMap, buildingNo);
-    //     commands.push(c);
-    //     return c;
+    // Command c = new AddroomsCommand(sc, buildMap, buildingNo);
+    // commands.push(c);
+    // return c;
     // }
 }

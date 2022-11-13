@@ -6,9 +6,9 @@ import java.util.*;
 
 public class DisplayCommand implements Command {
     Scanner sc;
-    HashMap <Integer,Building> buildMap;
+    HashMap<Integer, Building> buildMap;
 
-    public DisplayCommand(Scanner sc,HashMap<Integer,Building> buildMap) {
+    public DisplayCommand(Scanner sc, HashMap<Integer, Building> buildMap) {
         this.sc = sc;
         this.buildMap = buildMap;
     }
@@ -27,6 +27,7 @@ public class DisplayCommand implements Command {
             }
         } else {
             buildMap.get(Integer.parseInt(Userinput)).printBuilding();
+
         }
     };
 

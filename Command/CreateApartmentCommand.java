@@ -18,11 +18,11 @@ public class CreateApartmentCommand implements Command {
     }
 
     public void execute() {
+
         BuildingFactory bf = new ApartmentFactory();
         this.apartment = bf.createBuilding(sc);
         buildMap.put(apartment.getId(), apartment);
-
-        caretaker.saveBuidling(apartment, apartment.getId(), this.toString());
+        caretaker.saveBuidling(apartment, apartment.getId(), this.toString(), true);
     };
 
     public void undo() {
@@ -41,6 +41,8 @@ public class CreateApartmentCommand implements Command {
         Apartment apt = (Apartment) buildMap.get(apartment.getId());
         return "Add Building : Building No.:" + apt.getId() + " ,Support Staff:" + apt.getSupportStaff()
                 + ", Monthly Rental:" + apt.getMonthlyRental();
+
+    }
 
     public Building getApartment() {
         return apartment;
