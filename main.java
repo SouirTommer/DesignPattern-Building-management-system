@@ -28,7 +28,7 @@ public class main {
         f.put("a", new CreateBuildingCommandFactory(sc,buildMap,commands));
         f.put("d", new DisplayCommandFactory(sc,buildMap));
         f.put("m", new ModifyBuildingCommandFactory(sc,buildMap,commands));
-        f.put("e", new RoomFactory(sc,buildMap,commands));
+        // f.put("e", new RoomFactory(sc,buildMap,commands));
         f.put("u", new UndoCommandFactory(commands,redos));
         f.put("r", new RedoCommandFactory(commands,redos));
         f.put("l", new ListUndoRedoCommandFactory(commands,redos));
@@ -43,11 +43,6 @@ public class main {
             Userinput = sc.nextLine();
 
             switch (Userinput) {
-
-                case "m": // Modify Building Command
-                    command = new ModifyBuildingCommand(sc, buildMap);
-                    command.execute();
-                    break;
 
                 // case "e": // Edit Rooms Command
                 //     command = new EditroomsCommand(sc, buildMap);
