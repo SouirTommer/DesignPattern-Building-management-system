@@ -12,14 +12,12 @@ public class main {
     public static void main(String[] args)
             throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
-        Stack commands = new Stack();
-        Stack undos = new Stack();
-        Stack redos = new Stack();
+        // Memento
         Caretaker ct = new Caretaker(buildMap);
 
-        // Memento
-        String Userinput;
+        // Declare Command
         Command command;
+        
         // HasMap for open close
         HashMap<String, CommandFactory> f = new HashMap<>();
 
@@ -32,6 +30,7 @@ public class main {
         f.put("l", new ListUndoRedoCommandFactory(ct));
         f.put("x", new ExitCommandFactory());
 
+        String Userinput;
         while (true) {
             System.out.println("");
             System.out.println("Building Management System (BMS)");
@@ -39,7 +38,6 @@ public class main {
             System.out.println(
                     "a = add building, d = display buildings, m = modify building, e = edit rooms, u = undo, r = redo, l = list undo/redo, x = exit system");
             Userinput = sc.nextLine();
-
             command = f.get(Userinput).createCommand();
             command.execute();
 
