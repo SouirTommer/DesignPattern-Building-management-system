@@ -21,14 +21,14 @@ public class Apartment extends Building{
     public String getSupportStaff(){
         return this.supportStaff;
     }
-    public void modifyBuilding(Scanner sc){
-        System.out.print("Modify Monthly Rental.: ");
-        setMonthlyRental(sc.nextDouble());
-        System.out.print("Modify Support Staff.: ");
-        sc.nextLine();
-        setSupportStaff(sc.nextLine());
-        System.out.println("Building is modified: ");
-        System.out.println(toString());
+    public void modifyBuilding(){
+        // System.out.print("Modify Monthly Rental.: ");
+        // setMonthlyRental(sc.nextDouble());
+        // System.out.print("Modify Support Staff.: ");
+        // sc.nextLine();
+        // setSupportStaff(sc.nextLine());
+        // System.out.println("Building is modified: ");
+        // System.out.println(toString());
     }
     public void printBuilding(){
         System.out.println("Building No: "+super.getId());
@@ -38,7 +38,7 @@ public class Apartment extends Building{
 
     }
     public String toString(){
-        return "Building No.: "+super.getId()+", Support Staff: "+supportStaff+", Monthly Retal: "+monthlyRental;
+        return "Building No.: "+super.getId()+", Support Staff: "+supportStaff+", Monthly Rental: "+monthlyRental;
     }
 
 }

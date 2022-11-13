@@ -13,12 +13,12 @@ public class House extends Building{
     public int getFloors(){
         return noOfFloors;
     }
-    public void modifyBuilding(Scanner sc){
-        System.out.print("No. of Floors: ");
-        setFloors(sc.nextInt());
-        System.out.println("Building is modified:");
-        System.out.println(toString());
-        sc.nextLine();
+    public void modifyBuilding(){
+        // System.out.print("No. of Floors: ");
+        // setFloors(sc.nextInt());
+        // System.out.println("Building is modified:");
+        // System.out.println(toString());
+        // sc.nextLine();
     }
     public void printBuilding(){
         System.out.println("Building No: "+super.getId());

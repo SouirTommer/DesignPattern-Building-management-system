@@ -21,8 +21,8 @@ public class main {
 
         // Memento
         String Userinput;
-
         Command command;
+<<<<<<< HEAD
         // HasMap for open close
         HashMap<String, CommandFactory> f = new HashMap<>();
 
@@ -33,6 +33,19 @@ public class main {
         f.put("u", new UndoCommandFactory(commands, redos, ct));
         f.put("r", new RedoCommandFactory(commands, redos));
         f.put("l", new ListUndoRedoCommandFactory(commands, redos, ct));
+=======
+
+        // HasMap for open close
+        HashMap<String, CommandFactory> f = new HashMap<>();
+
+        f.put("a", new CreateBuildingCommandFactory(sc, buildMap, commands));
+        f.put("d", new DisplayCommandFactory(sc, buildMap));
+        f.put("m", new ModifyBuildingCommandFactory(sc, buildMap, commands));
+        f.put("e", new EditRoomCommandFactory(sc, buildMap, commands));
+        f.put("u", new UndoCommandFactory(commands, redos));
+        f.put("r", new RedoCommandFactory(commands, redos));
+        f.put("l", new ListUndoRedoCommandFactory(commands, redos));
+>>>>>>> cc44774567e21b7c1989585a0651e161d5d9e70f
         f.put("x", new ExitCommandFactory());
 
         while (true) {
@@ -43,6 +56,7 @@ public class main {
                     "a = add building, d = display buildings, m = modify building, e = edit rooms, u = undo, r = redo, l = list undo/redo, x = exit system");
             Userinput = sc.nextLine();
 
+<<<<<<< HEAD
             // switch (Userinput) {
 
             // case "m": // Modify Building Command
@@ -60,8 +74,17 @@ public class main {
             // break;
             // }
 
+=======
+>>>>>>> cc44774567e21b7c1989585a0651e161d5d9e70f
             command = f.get(Userinput).createCommand();
             command.execute();
+            // try {
+            //     command = f.get(Userinput).createCommand();
+            //     command.execute();
+            // } catch (Exception e) {
+            //     System.out.println("Wrong input");
+            // }
+
         }
     }
 }

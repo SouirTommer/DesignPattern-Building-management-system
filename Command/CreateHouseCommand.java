@@ -37,6 +37,10 @@ public class CreateHouseCommand implements Command {
         }
     };
 
+    public Building getHouse() {
+        return house;
+    }
+
     public String toString() {
         House hus = (House) buildMap.get(house.getId());
         return "Add Building : Building No.:" + hus.getId() + " ,No. of Floor:" + hus.getFloors();

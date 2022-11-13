@@ -28,7 +28,7 @@ public class ApartmentFactory implements BuildingFactory {
             double roomLength = sc.nextDouble();
             System.out.print("Width: ");
             double roomWidth = sc.nextDouble();
-            ap.addRoom(roomWidth, roomLength);
+            ap.addRoom(roomLength, roomWidth);
         }
 
         System.out.println("New Building Added:");

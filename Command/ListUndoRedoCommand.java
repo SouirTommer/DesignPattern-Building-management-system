@@ -3,6 +3,11 @@ package Command;
 import java.util.*;
 import Memento.*;
 
+import javax.print.event.PrintEvent;
+import javax.swing.event.SwingPropertyChangeSupport;
+
+import Building.Apartment;
+
 public class ListUndoRedoCommand implements Command {
     Stack commands;
     Stack redos;

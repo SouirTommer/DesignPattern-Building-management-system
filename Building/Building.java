@@ -43,7 +43,7 @@ public abstract class Building{
     public int getRoomQty(){
         return rooms.size();
     }
-    public abstract void modifyBuilding(Scanner sc);
+    public abstract void modifyBuilding();
     public abstract void printBuilding();
 
 }
