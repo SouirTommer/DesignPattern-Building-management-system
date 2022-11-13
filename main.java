@@ -22,18 +22,18 @@ public class main {
         String Userinput;
         Command command;
 
-        //HasMap for open close
+        // HasMap for open close
         HashMap<String, CommandFactory> f = new HashMap<>();
 
-        f.put("a", new CreateBuildingCommandFactory(sc,buildMap,commands));
-        f.put("d", new DisplayCommandFactory(sc,buildMap));
-        f.put("m", new ModifyBuildingCommandFactory(sc,buildMap,commands));
-        f.put("e", new EditRoomCommandFactory(sc,buildMap,commands));
-        f.put("u", new UndoCommandFactory(commands,redos));
-        f.put("r", new RedoCommandFactory(commands,redos));
-        f.put("l", new ListUndoRedoCommandFactory(commands,redos));
+        f.put("a", new CreateBuildingCommandFactory(sc, buildMap, commands));
+        f.put("d", new DisplayCommandFactory(sc, buildMap));
+        f.put("m", new ModifyBuildingCommandFactory(sc, buildMap, commands));
+        f.put("e", new EditRoomCommandFactory(sc, buildMap, commands));
+        f.put("u", new UndoCommandFactory(commands, redos));
+        f.put("r", new RedoCommandFactory(commands, redos));
+        f.put("l", new ListUndoRedoCommandFactory(commands, redos));
         f.put("x", new ExitCommandFactory());
-        
+
         while (true) {
             System.out.println("");
             System.out.println("Building Management System (BMS)");
@@ -44,17 +44,22 @@ public class main {
 
             // switch (Userinput) {
 
-            //     // case "e": // Edit Rooms Command
-            //     //     command = new EditroomsCommand(sc, buildMap);
-            //     //     command.execute();
-            //     //     break;
+            // // case "e": // Edit Rooms Command
+            // // command = new EditroomsCommand(sc, buildMap);
+            // // command.execute();
+            // // break;
 
-            //     default:
-            //         // System.out.println("input error");
-            //         break;
+            // default:
+            // // System.out.println("input error");
+            // break;
             // }
-            command = f.get(Userinput).createCommand();
-            command.execute();
+            try {
+                command = f.get(Userinput).createCommand();
+                command.execute();
+            } catch (Exception e) {
+                System.out.println("Wrong input");
+            }
+
         }
     }
 }
