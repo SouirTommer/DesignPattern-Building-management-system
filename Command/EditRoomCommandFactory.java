@@ -10,11 +10,10 @@ public class EditRoomCommandFactory implements CommandFactory {
     HashMap<Integer, Building> buildMap;
     Caretaker caretaker;
 
-    public EditRoomCommandFactory(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands,
+    public EditRoomCommandFactory(Scanner sc, HashMap<Integer, Building> buildMap,
             Caretaker caretaker) {
         this.sc = sc;
         this.buildMap = buildMap;
-        this.commands = commands;
         this.caretaker = caretaker;
     }
 
@@ -22,6 +21,6 @@ public class EditRoomCommandFactory implements CommandFactory {
     public Command createCommand() {
         System.out.print("Building No.: ");
         int buildingNo = sc.nextInt();
-        return new EditRoomCommand(sc, buildMap, commands, buildingNo);
+        return new EditRoomCommand(sc, buildMap,buildingNo);
     }
 }

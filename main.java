@@ -23,13 +23,13 @@ public class main {
         // HasMap for open close
         HashMap<String, CommandFactory> f = new HashMap<>();
 
-        f.put("a", new CreateBuildingCommandFactory(sc, buildMap, commands, ct));
+        f.put("a", new CreateBuildingCommandFactory(sc, buildMap, ct));
         f.put("d", new DisplayCommandFactory(sc, buildMap));
-        f.put("m", new ModifyBuildingCommandFactory(sc, buildMap, commands, ct));
-        f.put("e", new EditRoomCommandFactory(sc, buildMap, commands, ct));
-        f.put("u", new UndoCommandFactory(commands, redos, ct));
-        f.put("r", new RedoCommandFactory(commands, redos, ct));
-        f.put("l", new ListUndoRedoCommandFactory(commands, redos, ct));
+        f.put("m", new ModifyBuildingCommandFactory(sc, buildMap, ct));
+        f.put("e", new EditRoomCommandFactory(sc, buildMap, ct));
+        f.put("u", new UndoCommandFactory(ct));
+        f.put("r", new RedoCommandFactory(ct));
+        f.put("l", new ListUndoRedoCommandFactory(ct));
         f.put("x", new ExitCommandFactory());
 
         while (true) {

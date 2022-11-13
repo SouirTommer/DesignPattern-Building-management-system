@@ -10,11 +10,10 @@ public class CreateHouseCommandFactory implements CommandFactory {
     HashMap<Integer, Building> buildMap;
     Caretaker caretaker;
 
-    public CreateHouseCommandFactory(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands,
+    public CreateHouseCommandFactory(Scanner sc, HashMap<Integer, Building> buildMap,
             Caretaker caretaker) {
         this.sc = sc;
         this.buildMap = buildMap;
-        this.commands = commands;
         this.caretaker = caretaker;
     }
 

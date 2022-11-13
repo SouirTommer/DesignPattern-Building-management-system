@@ -5,19 +5,15 @@ import Building.*;
 import Memento.*;
 
 public class UndoCommandFactory implements CommandFactory {
-    private Stack commands;
-    private Stack redos;
     Caretaker caretaker;
 
-    public UndoCommandFactory(Stack commands, Stack redos, Caretaker caretaker) {
-        this.commands = commands;
-        this.redos = redos;
+    public UndoCommandFactory( Caretaker caretaker) {
         this.caretaker = caretaker;
     }
 
     @Override
     public Command createCommand() {
-        return new UndoCommand(commands, redos, caretaker);
+        return new UndoCommand(caretaker);
     }
 
 }

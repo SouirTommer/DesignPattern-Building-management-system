@@ -6,22 +6,20 @@ import Memento.*;
 
 public class CreateBuildingCommandFactory implements CommandFactory {
 
-    Stack commands;
     Scanner sc;
     HashMap<Integer, Building> buildMap;
     Caretaker caretaker;
 
-    public CreateBuildingCommandFactory(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands,
+    public CreateBuildingCommandFactory(Scanner sc, HashMap<Integer, Building> buildMap,
             Caretaker caretaker) {
         this.sc = sc;
         this.buildMap = buildMap;
-        this.commands = commands;
         this.caretaker = caretaker;
     }
 
     @Override
     public Command createCommand() {
-        Command c = new CreateBuildingCommand(sc, buildMap, commands, caretaker);
+        Command c = new CreateBuildingCommand(sc, buildMap,caretaker);
         return c;
     }
 

@@ -19,9 +19,6 @@ public class AddroomsCommand implements Command {
     }
 
     public void execute() {
-        // caretaker.saveBuidling(buildMap.get(buildingNo), buildingNo,
-        // this.toString());
-
         System.out.print("Length: ");
         double roomLength = sc.nextDouble();
 

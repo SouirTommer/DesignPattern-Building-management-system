@@ -14,13 +14,12 @@ public class CreateBuildingCommand implements Command {
     CommandFactory af;
     CommandFactory hf;
 
-    public CreateBuildingCommand(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands, Caretaker caretaker) {
+    public CreateBuildingCommand(Scanner sc, HashMap<Integer, Building> buildMap, Caretaker caretaker) {
         this.sc = sc;
         this.buildMap = buildMap;
-        this.commands = commands;
         this.caretaker = caretaker;
-        af = new CreateApartmentCommandFactory(sc, buildMap, commands, caretaker);
-        hf = new CreateHouseCommandFactory(sc, buildMap, commands, caretaker);
+        af = new CreateApartmentCommandFactory(sc, buildMap, caretaker);
+        hf = new CreateHouseCommandFactory(sc, buildMap, caretaker);
     }
 
     public void execute() {
