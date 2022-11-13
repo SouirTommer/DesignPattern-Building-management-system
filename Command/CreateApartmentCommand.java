@@ -31,4 +31,8 @@ public class CreateApartmentCommand implements Command {
             buildMap.put(apartment.getId(), apartment);
         }
     };
+
+    public Building getApartment(){
+        return apartment;
+    }
 }

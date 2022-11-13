@@ -32,5 +32,9 @@ public class CreateHouseCommand implements Command {
             buildMap.put(house.getId(),house);
         }
     };
+
+    public Building getHouse(){
+        return house;
+    }
 }
 
