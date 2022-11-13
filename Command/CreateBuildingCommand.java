@@ -9,11 +9,15 @@ public class CreateBuildingCommand implements Command {
     HashMap<Integer, Building> buildMap;
     Command command;
     Stack commands;
+    CommandFactory af;
+    CommandFactory hf;
 
-    public CreateBuildingCommand(Scanner sc, HashMap<Integer, Building> buildMap,Stack commands) {
+    public CreateBuildingCommand(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands) {
         this.sc = sc;
         this.buildMap = buildMap;
         this.commands = commands;
+        af = new CreateApartmentCommandFactory(sc, buildMap, commands);
+        hf = new CreateHouseCommandFactory(sc, buildMap, commands);
     }
 
     public void execute() {
@@ -23,13 +27,11 @@ public class CreateBuildingCommand implements Command {
 
         switch (Userinput) {
             case "a":
-                command = new CreateApartmentCommandFactory(sc, buildMap, commands).createCommand();
-                command.execute();
+                af.createCommand().execute();
                 break;
 
             case "h":
-                command = new CreateHouseCommandFactory(sc, buildMap,commands).createCommand();
-                command.execute();
+                hf.createCommand().execute();
                 break;
         }
     }

@@ -7,19 +7,23 @@ public class EditRoomCommand implements Command {
     Scanner sc;
     HashMap<Integer, Building> buildMap;
     Stack commands;
+    int buildingNo;
+    CommandFactory acf;
+    CommandFactory dcf;
+    CommandFactory mcf;
 
-    public EditRoomCommand(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands) {
+    public EditRoomCommand(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands, int buildingNo) {
         this.sc = sc;
         this.buildMap = buildMap;
         this.commands = commands;
+        this.buildingNo = buildingNo;
+        acf = new AddroomsCommandFactory(sc, buildMap, commands, buildingNo);
+        dcf = new DeleteroomsCommandFactory(sc, buildMap, commands, buildingNo);
+        mcf = new ModifyroomsCommandFactory(sc, buildMap, commands, buildingNo);
     }
 
     public void execute() {
-
-        System.out.print("Building No.: ");
-        int buildingNo = sc.nextInt();
         buildMap.get(buildingNo).printBuilding();
-
         System.out.println("");
         System.out.println("Please enter command: [a|d|m]");
         System.out.println("a = add room, d = delete room, m = modify room");
@@ -30,17 +34,14 @@ public class EditRoomCommand implements Command {
 
         switch (Userinput) {
             case "a":
-                c = new AddroomsCommandFactory(sc, buildMap, commands, buildingNo).createCommand();
-                c.execute();
+                acf.createCommand().execute();
                 break;
             case "d":
-                c = new DeleteroomsCommandFactory(sc, buildMap, commands, buildingNo).createCommand();
-                c.execute();
+                dcf.createCommand().execute();
                 break;
 
             case "m":
-                c = new ModifyroomsCommandFactory(sc, buildMap, commands, buildingNo).createCommand();
-                c.execute();
+                mcf.createCommand().execute();
                 break;
             default:
                 System.out.println("Error");

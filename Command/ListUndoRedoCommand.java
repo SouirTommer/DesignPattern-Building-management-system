@@ -23,10 +23,10 @@ public class ListUndoRedoCommand implements Command {
             while (iter.hasNext()) {
                 Command c = iter.next();
                 if (c instanceof CreateApartmentCommand) {
-                    System.out.println(((CreateApartmentCommand) c).getApartment().toString());
+                    System.out.println("Add Building : "+((CreateApartmentCommand) c).getApartment().toString());
                 }
                 if (c instanceof CreateHouseCommand) {
-                    System.out.println(((CreateHouseCommand) c).getHouse().toString());
+                    System.out.println("Add Building : "+((CreateHouseCommand) c).getHouse().toString());
                 }
             }
         } else {
@@ -40,10 +40,10 @@ public class ListUndoRedoCommand implements Command {
             while (iter.hasNext()) {
                 Command c = iter.next();
                 if (c instanceof CreateApartmentCommand) {
-                    System.out.println(((CreateApartmentCommand) c).getApartment().toString());
+                    System.out.println("Add Building : "+((CreateApartmentCommand) c).getApartment().toString());
                 }
                 if (c instanceof CreateHouseCommand) {
-                    System.out.println(((CreateHouseCommand) c).getHouse().toString());
+                    System.out.println("Add Building : "+((CreateHouseCommand) c).getHouse().toString());
                 }
             }
         } else {
