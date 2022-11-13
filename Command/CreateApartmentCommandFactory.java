@@ -21,7 +21,7 @@ public class CreateApartmentCommandFactory implements CommandFactory {
     @Override
     public Command createCommand() {
         Command c = new CreateApartmentCommand(sc, buildMap, caretaker);
-        // caretaker.saveCreateApartment(c);
+
         return c;
     }
 

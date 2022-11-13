@@ -20,13 +20,8 @@ public class EditRoomCommandFactory implements CommandFactory {
 
     @Override
     public Command createCommand() {
-<<<<<<< HEAD
-        return new EditRoomCommand(sc, buildMap, commands, caretaker);
-    }
-}
-=======
         System.out.print("Building No.: ");
         int buildingNo = sc.nextInt();
-        return new EditRoomCommand(sc, buildMap, commands,buildingNo);
-    }}
->>>>>>> 1b209cbe7108b28c5f6fe306eadcb987a07c3982
+        return new EditRoomCommand(sc, buildMap, commands, buildingNo);
+    }
+}

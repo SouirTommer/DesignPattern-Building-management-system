@@ -39,12 +39,6 @@ public class ModifyBuildingCommand implements Command {
             System.out.println(((House) buildMap.get(buildingNo)).toString());
             sc.nextLine();
         }
-        System.out.println("Finsih");
-
-        sc.nextLine();
-        System.out.println("mm test");
-        System.out.println(buildMap.get(buildingNo) + " " + buildingNo);
-
     }
 
     public void undo() {

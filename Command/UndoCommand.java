@@ -17,14 +17,17 @@ public class UndoCommand implements Command {
 
   @Override
   public void execute() {
-    // if (!commands.isEmpty()){
-    // Command com = (Command) commands.pop();
-    // com.undo();
-    // redos.push(com);
-    // } else {
-    // System.out.println("Nothing to undo!");
-    // }
-    caretaker.undo();
+    if (!caretaker.getUndoList().isEmpty()) {
+      // Command com = (Command) commands.pop();
+      // com.undo();
+      // redos.push(com);
+      // } else {
+      // System.out.println("Nothing to undo!");
+      // }
+      caretaker.undo();
+    } else {
+      System.out.println("Nothing to undo!");
+    }
   };
 
   @Override

@@ -8,15 +8,6 @@ public class EditRoomCommand implements Command {
     Scanner sc;
     HashMap<Integer, Building> buildMap;
     Stack commands;
-<<<<<<< HEAD
-    Caretaker caretaker;
-
-    public EditRoomCommand(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands, Caretaker caretaker) {
-        this.sc = sc;
-        this.buildMap = buildMap;
-        this.commands = commands;
-        this.caretaker = caretaker;
-=======
     int buildingNo;
     CommandFactory acf;
     CommandFactory dcf;
@@ -30,7 +21,6 @@ public class EditRoomCommand implements Command {
         acf = new AddroomsCommandFactory(sc, buildMap, commands, buildingNo);
         dcf = new DeleteroomsCommandFactory(sc, buildMap, commands, buildingNo);
         mcf = new ModifyroomsCommandFactory(sc, buildMap, commands, buildingNo);
->>>>>>> 1b209cbe7108b28c5f6fe306eadcb987a07c3982
     }
 
     public void execute() {
@@ -45,19 +35,6 @@ public class EditRoomCommand implements Command {
 
         switch (Userinput) {
             case "a":
-<<<<<<< HEAD
-                c = new AddroomsCommandFactory(sc, buildMap, commands, buildingNo, caretaker).createCommand();
-                c.execute();
-                break;
-            case "d":
-                c = new DeleteroomsCommandFactory(sc, buildMap, commands, buildingNo, caretaker).createCommand();
-                c.execute();
-                break;
-
-            case "m":
-                c = new ModifyroomsCommandFactory(sc, buildMap, commands, buildingNo, caretaker).createCommand();
-                c.execute();
-=======
                 acf.createCommand().execute();
                 break;
             case "d":
@@ -66,7 +43,6 @@ public class EditRoomCommand implements Command {
 
             case "m":
                 mcf.createCommand().execute();
->>>>>>> 1b209cbe7108b28c5f6fe306eadcb987a07c3982
                 break;
             default:
                 System.out.println("Error");

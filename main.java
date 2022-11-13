@@ -28,7 +28,7 @@ public class main {
         f.put("m", new ModifyBuildingCommandFactory(sc, buildMap, commands, ct));
         f.put("e", new EditRoomCommandFactory(sc, buildMap, commands, ct));
         f.put("u", new UndoCommandFactory(commands, redos, ct));
-        f.put("r", new RedoCommandFactory(commands, redos));
+        f.put("r", new RedoCommandFactory(commands, redos, ct));
         f.put("l", new ListUndoRedoCommandFactory(commands, redos, ct));
         f.put("x", new ExitCommandFactory());
 

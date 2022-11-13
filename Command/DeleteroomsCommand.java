@@ -9,13 +9,11 @@ public class DeleteroomsCommand implements Command {
     Scanner sc;
     HashMap<Integer, Building> buildMap;
     private int buildingNo;
-    Caretaker caretaker;
 
-    public DeleteroomsCommand(Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo, Caretaker caretaker) {
+    public DeleteroomsCommand(Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo) {
         this.sc = sc;
         this.buildMap = buildMap;
         this.buildingNo = buildingNo;
-        this.caretaker = caretaker;
     }
 
     public void execute() {

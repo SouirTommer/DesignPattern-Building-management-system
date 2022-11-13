@@ -32,15 +32,10 @@ public class Caretaker {
         if (!undoList.isEmpty()) {
             Memento undom = (Memento) undoList.pop();
             Memento remember = new Memento(undom.getmbuilding(), undom.getmbuildingNo(), IsCreate); // save
-            // toy
-            // for
-            // put in
-            // redo
-            // if
-            // this is not create commands
             if (undom.getIsCreate()) {
-                redoList.push(undom); // pop undo list object to redo list
+                redoList.push(undom);
                 buildMap.remove(undom.getmbuildingNo());
+
             } else {
                 redoList.push(remember); // push a new memento to redolist
                 undom.restore(); // restore memento
@@ -88,5 +83,13 @@ public class Caretaker {
     public LinkedList getreCommand() {
         return (LinkedList) this.reCommand.clone();
 
+    }
+
+    public Stack getRedoList() {
+        return redoList;
+    }
+
+    public Stack getUndoList() {
+        return undoList;
     }
 }

@@ -11,8 +11,7 @@ public class AddroomsCommandFactory implements CommandFactory {
     int buildingNo;
     Caretaker caretaker;
 
-    public AddroomsCommandFactory(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands, int buildingNo,
-            Caretaker caretaker) {
+    public AddroomsCommandFactory(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands, int buildingNo) {
         this.sc = sc;
         this.buildMap = buildMap;
         this.commands = commands;
