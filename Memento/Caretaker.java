@@ -27,6 +27,12 @@ public class Caretaker {
         unCommand.push(message);
     }
 
+    // public void saveBuidling(Building building, int buildingNo, String message,
+    // boolean IsCreate) {
+    // undoList.push(new Memento(building, buildingNo, IsCreate));
+    // unCommand.push(message);
+    // }
+
     // undo commands
     public void undo() {
         if (!undoList.isEmpty()) {
@@ -81,7 +87,6 @@ public class Caretaker {
 
     public LinkedList getreCommand() {
         return (LinkedList) this.reCommand.clone();
-
     }
 
     public Stack getRedoList() {
