@@ -3,19 +3,18 @@ package Command;
 import java.util.*;
 import Building.*;
 
-public class RoomFactory implements CommandFactory {
-    Stack commands;
+public class EditRoomCommand implements Command {
     Scanner sc;
     HashMap<Integer, Building> buildMap;
+    Stack commands;
 
-    public RoomFactory(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands) {
+    public EditRoomCommand(Scanner sc, HashMap<Integer, Building> buildMap, Stack commands) {
         this.sc = sc;
         this.buildMap = buildMap;
         this.commands = commands;
     }
 
-    @Override
-    public Command createCommand() {
+    public void execute() {
 
         System.out.print("Building No.: ");
         int buildingNo = sc.nextInt();
@@ -24,26 +23,37 @@ public class RoomFactory implements CommandFactory {
         System.out.println("");
         System.out.println("Please enter command: [a|d|m]");
         System.out.println("a = add room, d = delete room, m = modify room");
-        String Userinput = sc.nextLine();
+        String Userinput = sc.next();
         sc.nextLine();
 
         Command c = null;
 
-        switch(Userinput){
+        switch (Userinput) {
             case "a":
-                c = new AddroomsCommand(sc, buildMap, buildingNo);
+                c = new AddroomsCommandFactory(sc, buildMap, commands, buildingNo).createCommand();
+                c.execute();
                 break;
             case "d":
-                c = new DeleteroomsCommand(sc, buildMap, buildingNo);
+                c = new DeleteroomsCommandFactory(sc, buildMap, commands, buildingNo).createCommand();
+                c.execute();
                 break;
-            case "c":
-                c = new ModifyroomsCommand(sc, buildMap, buildingNo);
+
+            case "m":
+                c = new ModifyroomsCommandFactory(sc, buildMap, commands, buildingNo).createCommand();
+                c.execute();
                 break;
             default:
                 System.out.println("Error");
                 break;
         }
+    }
 
-        commands.push(c);
-        return c;
-    }}
+    public void undo() {
+
+    }
+
+    public void redo() {
+
+    }
+
+}
