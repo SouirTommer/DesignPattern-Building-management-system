@@ -11,6 +11,7 @@ public class Caretaker {
     private LinkedList unCommand; // a LinkedList to store the undo commands String
     private LinkedList reCommand; // a LinkedList to store the redo commands String
     private boolean IsCreate;
+    private boolean IsMod;
 
     public Caretaker(HashMap<Integer, Building> buildMap) {
         this.buildMap = buildMap;
@@ -27,22 +28,19 @@ public class Caretaker {
         unCommand.push(message);
     }
 
-    public void saveRoom(Room room,String message,Boolean IsCreate){
-        undoList.push(new RoomMemento(room,IsCreate));
+    public void saveRoom(Room mroom,double mWidth,double mLength,Building building, int buildingNo, String message, Boolean IsMod) {
+        undoList.push(new RoomMemento( mroom, mWidth, mLength,building, buildingNo, IsMod));
         unCommand.push(message);
     }
-    // public void saveBuidling(Building building, int buildingNo, String message,
-    // boolean IsCreate) {
-    // undoList.push(new Memento(building, buildingNo, IsCreate));
-    // unCommand.push(message);
-    // }
 
     // undo commands
     public void undo() {
-        if (undoList.peek() instanceof BuildingMemento) {
-            if (!undoList.isEmpty()) {
+        if (!undoList.isEmpty()) {
+            if (undoList.peek() instanceof BuildingMemento) {
+
                 BuildingMemento undom = (BuildingMemento) undoList.pop();
-                BuildingMemento remember = new BuildingMemento(undom.getmbuilding(), undom.getmbuildingNo(), IsCreate); // save
+                BuildingMemento remember = new BuildingMemento(undom.getmbuilding(), undom.getmbuildingNo(),
+                        IsCreate); // save
                 if (undom.getIsCreate()) {
                     redoList.push(undom);
                     buildMap.remove(undom.getmbuildingNo());
@@ -56,23 +54,38 @@ public class Caretaker {
                     System.out.println("\nUndo: " + message);
                     reCommand.push(message);
                 }
-            } else {
-                System.out.println("\nNothing to Undo");
-            }
-        }
 
-        if (undoList.peek() instanceof RoomMemento) {
-            // do room memento stuff
+            }
+
+            else if (undoList.peek() instanceof RoomMemento) {
+                // do room memento stuff
+
+                RoomMemento undom = (RoomMemento) undoList.pop();
+                RoomMemento remember = new RoomMemento(undom.getRoom(),undom.getWidth(),undom.getLength(),undom.getmbuilding(), undom.getmbuildingNo(),
+                        IsMod); // save
+                redoList.push(remember);
+                undom.restore();
+
+                if (!unCommand.isEmpty()) {
+                    String message = (String) unCommand.pop();
+                    System.out.println("\nUndo: " + message);
+                    reCommand.push(message);
+                }
+            }
+
+        } else {
+            System.out.println("\nNothing to Undo");
         }
 
     }
 
     // redo commands
     public void redo() {
-        if (redoList.peek() instanceof BuildingMemento) {
-            if (!redoList.isEmpty()) {
+        if (!redoList.isEmpty()) {
+            if (redoList.peek() instanceof BuildingMemento) {
                 BuildingMemento redom = (BuildingMemento) redoList.pop();
-                BuildingMemento remember = new BuildingMemento(redom.getmbuilding(), redom.getmbuildingNo(), IsCreate);
+                BuildingMemento remember = new BuildingMemento(redom.getmbuilding(), redom.getmbuildingNo(),
+                        IsCreate);
                 if (redom.getIsCreate()) {
                     undoList.push(redom); // pop redo list object to undo list
                     buildMap.put(redom.getmbuildingNo(), redom.getmbuilding()); // add back the toy in vector
@@ -85,11 +98,25 @@ public class Caretaker {
                     System.out.println("\nRedo :" + message);
                     unCommand.push(message);
                 }
-            } else {
-                System.out.println("\nNothing to Redo");
             }
-        }
 
+            else if (redoList.peek() instanceof RoomMemento) {
+                RoomMemento redom = (RoomMemento) redoList.pop();
+                RoomMemento remember = new RoomMemento(redom.getRoom(),redom.getWidth(),redom.getLength(),redom.getmbuilding(), redom.getmbuildingNo(),
+                        IsMod); // save
+                undoList.push(remember);
+                redom.restore();
+
+                if (!reCommand.isEmpty()) {
+                    String message = (String) reCommand.pop();
+                    System.out.println("\nRedo: " + message);
+                    unCommand.push(message);
+                }
+
+            }
+        } else {
+            System.out.println("\nNothing to Redo");
+        }
     }
 
     public LinkedList getunCommand() {
@@ -108,8 +135,8 @@ public class Caretaker {
         return undoList;
     }
 
-    public void clearRedoList() {
-        this.redoList.clear();
-        this.reCommand.clear();
-    }
+    // public void clearRedoList() {
+    // this.redoList.clear();
+    // this.reCommand.clear();
+    // }
 }

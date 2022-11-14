@@ -11,17 +11,13 @@ public class BuildingMemento  implements MementoIF{
     // apartment
     private String msupportStaff;
     private double mmonthlyRental;
-    private ArrayList<Room> mroomList;
-    private ArrayList<Room> mroomListClone;
     private boolean IsCreate;
 
     public BuildingMemento(Building building, int buildingNo, boolean IsCreate) {
         this.mbuildingNo = buildingNo;
         mbuilding = building;
         this.IsCreate = IsCreate;
-        this.mroomListClone =(ArrayList)mbuilding.getRooms().clone();
-        this.mroomList =mbuilding.getRooms();
-        System.out.println(mroomList);
+
 
         if (mbuilding instanceof House) {
             this.mnoOfFloors = ((House) mbuilding).getFloors();
@@ -34,9 +30,6 @@ public class BuildingMemento  implements MementoIF{
 
     // restore the product
     public void restore() {
-
-        mroomList.clear();
-        mroomList.addAll(this.mroomListClone);
 
         if (mbuilding instanceof House) {
             ((House) mbuilding).setFloors(this.mnoOfFloors);

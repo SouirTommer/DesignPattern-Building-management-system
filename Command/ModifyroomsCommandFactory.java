@@ -19,7 +19,9 @@ public class ModifyroomsCommandFactory implements CommandFactory {
     }
 
     public Command createCommand() {
-        Command c = new ModifyroomsCommand(sc, buildMap, buildingNo,ct);
+        System.out.print("Room No.: ");
+        int roomNo = sc.nextInt();
+        Command c = new ModifyroomsCommand(roomNo,sc, buildMap, buildingNo,ct);
         return c;
     }
 }

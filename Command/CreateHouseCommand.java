@@ -21,7 +21,6 @@ public class CreateHouseCommand implements Command {
         BuildingFactory bf = new HouseFactory();
         house = bf.createBuilding(sc);
         buildMap.put(house.getId(), house);
-        caretaker.clearRedoList();
         caretaker.saveBuidling(house, house.getId(), this.toString(), true);
 
     };

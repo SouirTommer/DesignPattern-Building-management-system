@@ -22,7 +22,6 @@ public class CreateApartmentCommand implements Command {
         BuildingFactory bf = new ApartmentFactory();
         this.apartment = bf.createBuilding(sc);
         buildMap.put(apartment.getId(), apartment);
-        caretaker.clearRedoList();
         caretaker.saveBuidling(apartment, apartment.getId(), this.toString(), true);
     };
 

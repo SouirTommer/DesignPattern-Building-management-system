@@ -18,7 +18,12 @@ public class AddroomsCommandFactory implements CommandFactory {
     }
 
     public Command createCommand() {
-        Command c = new AddroomsCommand(sc, buildMap, buildingNo, ct);
+        System.out.print("Length: ");
+        double roomLength = sc.nextDouble();
+
+        System.out.print("Width: ");
+        double roomWidth = sc.nextDouble();
+        Command c = new AddroomsCommand(roomLength,roomWidth,sc, buildMap, buildingNo, ct);
         return c;
     }
 

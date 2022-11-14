@@ -9,40 +9,46 @@ public class ModifyroomsCommand implements Command {
     Scanner sc;
     HashMap<Integer, Building> buildMap;
     private int buildingNo;
-    Caretaker ct;
+    private Caretaker ct;
+    private Building building;
+    private int roomno;
+    private Room room;
 
-    public ModifyroomsCommand(Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo,Caretaker ct) {
+    public ModifyroomsCommand(int roomno, Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo,
+            Caretaker ct) {
         this.sc = sc;
         this.buildMap = buildMap;
         this.buildingNo = buildingNo;
         this.ct = ct;
+        this.roomno = roomno;
+        building = buildMap.get(buildingNo);
+        room = building.getRooms().get(roomno - 1);
     }
 
     public void execute() {
 
-        // caretaker.saveBuidling(buildMap.get(buildingNo), buildingNo,
-        // this.toString(),true);
-
-        System.out.print("Room No.: ");
-        int roomNo = sc.nextInt();
+        ct.saveRoom(room, room.getWidth(), room.getWidth(), buildMap.get(buildingNo), buildingNo, this.toString(),
+                true);
 
         System.out.print("Length: ");
         double roomLength = sc.nextDouble();
 
         System.out.print("Width: ");
         double roomWidth = sc.nextDouble();
-
+        sc.nextLine();
         System.out.println("Updated Building:");
-        buildMap.get(buildingNo).modifyRoom(roomNo, roomLength, roomWidth);
+        buildMap.get(buildingNo).modifyRoom(roomno, roomLength, roomWidth);
         buildMap.get(buildingNo).printBuilding();
 
-        System.out.println("Finsih");
+        System.out.println("Finish");
 
-        System.out.println("m test");
-
-        System.out.println(buildMap.get(buildingNo) + " " + buildingNo);
+        System.out.println(buildMap.get(buildingNo));
 
     };
+
+    public String toString() {
+        return "Modify Room : ";
+    }
 
     public void undo() {
 

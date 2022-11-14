@@ -11,7 +11,7 @@ public class DeleteroomsCommandFactory implements CommandFactory {
     int buildingNo;
     Caretaker ct;
 
-    public DeleteroomsCommandFactory(Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo,Caretaker ct) {
+    public DeleteroomsCommandFactory(Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo, Caretaker ct) {
         this.sc = sc;
         this.buildMap = buildMap;
         this.buildingNo = buildingNo;
@@ -20,7 +20,9 @@ public class DeleteroomsCommandFactory implements CommandFactory {
     }
 
     public Command createCommand() {
-        Command c = new DeleteroomsCommand(sc, buildMap, buildingNo,ct);
+        System.out.print("Room No.: ");
+        int roomNo = sc.nextInt();
+        Command c = new DeleteroomsCommand(roomNo,sc, buildMap, buildingNo, ct);
         return c;
     }
 }

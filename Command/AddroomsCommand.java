@@ -9,34 +9,42 @@ public class AddroomsCommand implements Command {
     Scanner sc;
     HashMap<Integer, Building> buildMap;
     private int buildingNo;
-    Caretaker caretaker;
-    int Roomindex;
+    Caretaker ct;
+    int roomNo;
+    double roomLength;
+    double roomWidth;
+    Building building;
+    Room room;
 
-    public AddroomsCommand(Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo, Caretaker caretaker) {
+    public AddroomsCommand(double roomLength, double roomWidth, Scanner sc, HashMap<Integer, Building> buildMap,
+            int buildingNo, Caretaker ct) {
         this.sc = sc;
         this.buildMap = buildMap;
         this.buildingNo = buildingNo;
-        this.caretaker = caretaker;
+        this.ct = ct;
+        this.roomLength = roomLength;
+        this.roomWidth = roomWidth;
+        building = buildMap.get(buildingNo);
     }
 
-    public void execute() {
-        System.out.print("Length: ");
-        double roomLength = sc.nextDouble();
 
-        System.out.print("Width: ");
-        double roomWidth = sc.nextDouble();
+    public void execute() {
+
+        roomNo = buildMap.get(buildingNo).getRoomQty() + 1;
+        ct.saveRoom(room, roomWidth, roomLength, buildMap.get(buildingNo), buildingNo, this.toString(),
+                false);
+
         System.out.println("Updated Building:");
         buildMap.get(buildingNo).addRoom(roomLength, roomWidth);
         buildMap.get(buildingNo).printBuilding();
-        Roomindex = buildMap.size()-1;
-        caretaker.saveRoom(buildMap.get(buildingNo).getRooms().get(Roomindex), toString(), true);
+
         sc.nextLine();
 
     };
 
-    public String toString(){
-        Room room = (Room) buildMap.get(buildingNo).getRooms().get(Roomindex);
-        return "Add Room : Building No. " + buildingNo + " ,Room No. "+(Roomindex+1) + ", Length : "+ room.getLength()+", Width : "+room.getWidth();
+    public String toString() {
+        return "Add Room : Building No. " + buildingNo + " ,Room No. " + (roomNo) + ", Length : " + roomLength
+                + ", Width : " + roomWidth;
     }
 
     public void undo() {
