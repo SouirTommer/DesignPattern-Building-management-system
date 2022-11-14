@@ -1,6 +1,6 @@
 package Memento;
 
-public interface Memento {
+public interface MementoIF {
 
     public void restore();
 

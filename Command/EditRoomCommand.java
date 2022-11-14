@@ -1,7 +1,11 @@
 package Command;
 
 import java.util.*;
+
+import javax.swing.text.Caret;
+
 import Building.*;
+import Memento.Caretaker;
 
 public class EditRoomCommand implements Command {
     Scanner sc;
@@ -11,13 +15,13 @@ public class EditRoomCommand implements Command {
     CommandFactory dcf;
     CommandFactory mcf;
 
-    public EditRoomCommand(Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo) {
+    public EditRoomCommand(Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo,Caretaker ct) {
         this.sc = sc;
         this.buildMap = buildMap;
         this.buildingNo = buildingNo;
-        acf = new AddroomsCommandFactory(sc, buildMap, buildingNo);
-        dcf = new DeleteroomsCommandFactory(sc, buildMap, buildingNo);
-        mcf = new ModifyroomsCommandFactory(sc, buildMap, buildingNo);
+        acf = new AddroomsCommandFactory(sc, buildMap, buildingNo,ct);
+        dcf = new DeleteroomsCommandFactory(sc, buildMap, buildingNo,ct);
+        mcf = new ModifyroomsCommandFactory(sc, buildMap, buildingNo,ct);
     }
 
     public void execute() {
@@ -27,8 +31,6 @@ public class EditRoomCommand implements Command {
         System.out.println("a = add room, d = delete room, m = modify room");
         String Userinput = sc.next();
         sc.nextLine();
-
-        Command c = null;
 
         switch (Userinput) {
             case "a":

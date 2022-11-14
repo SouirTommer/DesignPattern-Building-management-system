@@ -10,6 +10,7 @@ public class AddroomsCommand implements Command {
     HashMap<Integer, Building> buildMap;
     private int buildingNo;
     Caretaker caretaker;
+    int Roomindex;
 
     public AddroomsCommand(Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo, Caretaker caretaker) {
         this.sc = sc;
@@ -27,10 +28,16 @@ public class AddroomsCommand implements Command {
         System.out.println("Updated Building:");
         buildMap.get(buildingNo).addRoom(roomLength, roomWidth);
         buildMap.get(buildingNo).printBuilding();
-
+        Roomindex = buildMap.size()-1;
+        caretaker.saveRoom(buildMap.get(buildingNo).getRooms().get(Roomindex), toString(), true);
         sc.nextLine();
 
     };
+
+    public String toString(){
+        Room room = (Room) buildMap.get(buildingNo).getRooms().get(Roomindex);
+        return "Add Room : Building No. " + buildingNo + " ,Room No. "+(Roomindex+1) + ", Length : "+ room.getLength()+", Width : "+room.getWidth();
+    }
 
     public void undo() {
 

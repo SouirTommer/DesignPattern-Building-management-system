@@ -2,8 +2,7 @@ package Memento;
 
 import Building.*;
 import java.util.*;
-
-public class Memento implements MementoIF {
+public class BuildingMemento  implements MementoIF{
     private Building mbuilding;
     private int mbuildingNo;
     // common
@@ -12,15 +11,17 @@ public class Memento implements MementoIF {
     // apartment
     private String msupportStaff;
     private double mmonthlyRental;
-    // private int round;
+    private ArrayList<Room> mroomList;
+    private ArrayList<Room> mroomListClone;
     private boolean IsCreate;
 
-    public Memento(Building building, int buildingNo, boolean IsCreate) {
+    public BuildingMemento(Building building, int buildingNo, boolean IsCreate) {
         this.mbuildingNo = buildingNo;
         mbuilding = building;
         this.IsCreate = IsCreate;
-        // this.mrooms = mbuilding.getRooms();
-        // round = mrooms.size();
+        this.mroomListClone =(ArrayList)mbuilding.getRooms().clone();
+        this.mroomList =mbuilding.getRooms();
+        System.out.println(mroomList);
 
         if (mbuilding instanceof House) {
             this.mnoOfFloors = ((House) mbuilding).getFloors();
@@ -33,6 +34,9 @@ public class Memento implements MementoIF {
 
     // restore the product
     public void restore() {
+
+        mroomList.clear();
+        mroomList.addAll(this.mroomListClone);
 
         if (mbuilding instanceof House) {
             ((House) mbuilding).setFloors(this.mnoOfFloors);
@@ -52,6 +56,6 @@ public class Memento implements MementoIF {
     }
 
     public boolean getIsCreate() {
-        return IsCreate;
+        return this.IsCreate;
     }
 }

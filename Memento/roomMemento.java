@@ -3,17 +3,19 @@ package Memento;
 import Building.*;
 import java.util.*;
 
-public class roomMemento implements MementoIF {
+public class RoomMemento implements MementoIF{
     private Room mroom;
     private double mlength;
     private double mwidth;
     private boolean IsCreate;
+    private int mroomNo;
+    ArrayList<String> mroomlist;
 
-    public roomMemento(Room room, boolean IsCreate) {
-        mroom = room;
+    public RoomMemento(Room room, boolean IsCreate) {
+        this.mroom = room;
         this.IsCreate = IsCreate;
-        mlength = mroom.getLength();
-        mwidth = mroom.getWidth();
+        this.mlength = mroom.getLength();
+        this.mwidth = mroom.getWidth();
 
     }
 

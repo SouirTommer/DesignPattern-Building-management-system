@@ -21,6 +21,6 @@ public class EditRoomCommandFactory implements CommandFactory {
     public Command createCommand() {
         System.out.print("Building No.: ");
         int buildingNo = sc.nextInt();
-        return new EditRoomCommand(sc, buildMap,buildingNo);
+        return new EditRoomCommand(sc, buildMap,buildingNo,caretaker);
     }
 }

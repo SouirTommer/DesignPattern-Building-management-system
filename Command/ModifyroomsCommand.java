@@ -9,11 +9,13 @@ public class ModifyroomsCommand implements Command {
     Scanner sc;
     HashMap<Integer, Building> buildMap;
     private int buildingNo;
+    Caretaker ct;
 
-    public ModifyroomsCommand(Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo) {
+    public ModifyroomsCommand(Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo,Caretaker ct) {
         this.sc = sc;
         this.buildMap = buildMap;
         this.buildingNo = buildingNo;
+        this.ct = ct;
     }
 
     public void execute() {

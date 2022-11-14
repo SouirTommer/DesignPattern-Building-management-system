@@ -23,10 +23,14 @@ public class Caretaker {
     // save the building state put commands message to list, check is it a create
     // commands
     public void saveBuidling(Building building, int buildingNo, String message, boolean IsCreate) {
-        undoList.push(new Memento(building, buildingNo, IsCreate));
+        undoList.push(new BuildingMemento(building, buildingNo, IsCreate));
         unCommand.push(message);
     }
 
+    public void saveRoom(Room room,String message,Boolean IsCreate){
+        undoList.push(new RoomMemento(room,IsCreate));
+        unCommand.push(message);
+    }
     // public void saveBuidling(Building building, int buildingNo, String message,
     // boolean IsCreate) {
     // undoList.push(new Memento(building, buildingNo, IsCreate));
@@ -35,50 +39,57 @@ public class Caretaker {
 
     // undo commands
     public void undo() {
-        if (!undoList.isEmpty()) {
-            Memento undom = (Memento) undoList.pop();
-            Memento remember = new Memento(undom.getmbuilding(), undom.getmbuildingNo(), IsCreate); // save
-            if (undom.getIsCreate()) {
-                redoList.push(undom);
-                buildMap.remove(undom.getmbuildingNo());
+        if (undoList.peek() instanceof BuildingMemento) {
+            if (!undoList.isEmpty()) {
+                BuildingMemento undom = (BuildingMemento) undoList.pop();
+                BuildingMemento remember = new BuildingMemento(undom.getmbuilding(), undom.getmbuildingNo(), IsCreate); // save
+                if (undom.getIsCreate()) {
+                    redoList.push(undom);
+                    buildMap.remove(undom.getmbuildingNo());
 
+                } else {
+                    redoList.push(remember); // push a new memento to redolist
+                    undom.restore(); // restore memento
+                }
+                if (!unCommand.isEmpty()) {
+                    String message = (String) unCommand.pop();
+                    System.out.println("\nUndo: " + message);
+                    reCommand.push(message);
+                }
             } else {
-                redoList.push(remember); // push a new memento to redolist
-                undom.restore(); // restore memento
+                System.out.println("\nNothing to Undo");
             }
-            if (!unCommand.isEmpty()) {
-                String message = (String) unCommand.pop();
-                System.out.println("\nUndo: " + message);
-                reCommand.push(message);
-            }
-        } else {
-            System.out.println("\nNothing to Undo");
+        }
+
+        if (undoList.peek() instanceof RoomMemento) {
+            // do room memento stuff
         }
 
     }
 
     // redo commands
     public void redo() {
-        if (!redoList.isEmpty()) {
-            Memento redom = (Memento) redoList.pop();
-            Memento remember = new Memento(redom.getmbuilding(), redom.getmbuildingNo(), IsCreate);
-            if (redom.getIsCreate()) {
-                undoList.push(redom); // pop redo list object to undo list
-                buildMap.put(redom.getmbuildingNo(), redom.getmbuilding()); // add back the toy in vector
+        if (redoList.peek() instanceof BuildingMemento) {
+            if (!redoList.isEmpty()) {
+                BuildingMemento redom = (BuildingMemento) redoList.pop();
+                BuildingMemento remember = new BuildingMemento(redom.getmbuilding(), redom.getmbuildingNo(), IsCreate);
+                if (redom.getIsCreate()) {
+                    undoList.push(redom); // pop redo list object to undo list
+                    buildMap.put(redom.getmbuildingNo(), redom.getmbuilding()); // add back the toy in vector
+                } else {
+                    undoList.push(remember); // push a new memento to undolist
+                    redom.restore(); // restore memento
+                }
+                if (!reCommand.isEmpty()) {
+                    String message = (String) reCommand.pop();
+                    System.out.println("\nRedo :" + message);
+                    unCommand.push(message);
+                }
             } else {
-                undoList.push(remember); // push a new memento to undolist
-                redom.restore(); // restore memento
+                System.out.println("\nNothing to Redo");
             }
-
-            if (!reCommand.isEmpty()) {
-                String message = (String) reCommand.pop();
-                System.out.println("\nRedo :" + message);
-                unCommand.push(message);
-            }
-
-        } else {
-            System.out.println("\nNothing to Redo");
         }
+
     }
 
     public LinkedList getunCommand() {

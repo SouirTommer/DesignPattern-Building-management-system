@@ -15,7 +15,6 @@ public class ListUndoRedoCommand implements Command {
         System.out.println("Undo List :");
         if (!caretaker.getunCommand().isEmpty()) {
             Iterator iter = caretaker.getunCommand().iterator();
-
             while (iter.hasNext()) {
                 String m = (String) iter.next();
                 System.out.println(m);

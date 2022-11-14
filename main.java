@@ -38,16 +38,16 @@ public class main {
                     "a = add building, d = display buildings, m = modify building, e = edit rooms, u = undo, r = redo, l = list undo/redo, x = exit system");
             Userinput = sc.nextLine();
             
-            // command = f.get(Userinput).createCommand();
-            // command.execute();
-
-            try {
             command = f.get(Userinput).createCommand();
             command.execute();
-            } catch (Exception e) {
-            System.out.println("Wrong input");
-            }
 
+            // try {
+            // command = f.get(Userinput).createCommand();
+            // command.execute();
+            // } catch (Exception e) {
+            // System.out.println("Wrong input");
+            // }
+            // buildMap.get(1001).getRooms().add(new Room(150,150));
         }
     }
 }
