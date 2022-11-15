@@ -46,8 +46,8 @@ public class ModifyroomsCommand implements Command {
 
     };
 
-    public String toString() {
-        return "Modify Room : ";
+    public String toString(){
+        return "Modify Room : Building No. " + buildingNo + " ,Room No. " + roomno + ", Length : "+ buildMap.get(buildingNo).getRooms().get(roomno-1).getLength() + ", Width : " + buildMap.get(buildingNo).getRooms().get(roomno-1).getWidth();
     }
 
     public void undo() {

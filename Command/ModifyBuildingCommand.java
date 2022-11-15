@@ -10,6 +10,8 @@ public class ModifyBuildingCommand implements Command {
     Scanner sc;
     Caretaker caretaker;
 
+    int buildingNo;
+
     public ModifyBuildingCommand(Scanner sc, HashMap<Integer, Building> buildMap, Caretaker caretaker) {
         this.sc = sc;
         this.buildMap = buildMap;
@@ -19,7 +21,7 @@ public class ModifyBuildingCommand implements Command {
     public void execute() {
 
         System.out.print("Building No.: ");
-        int buildingNo = sc.nextInt();
+        buildingNo = sc.nextInt();
 
         caretaker.saveBuidling(buildMap.get(buildingNo), buildingNo, this.toString(), false);
 
@@ -39,6 +41,9 @@ public class ModifyBuildingCommand implements Command {
             System.out.println(((House) buildMap.get(buildingNo)).toString());
             sc.nextLine();
         }
+    }
+    public String toString(){
+        return "Modify Building: " +buildMap.get(buildingNo).toString();
     }
 
     public void undo() {
