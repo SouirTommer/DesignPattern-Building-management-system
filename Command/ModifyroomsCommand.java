@@ -1,3 +1,7 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  15/11/2022
+*/
 package Command;
 
 import Building.*;
@@ -6,55 +10,47 @@ import Memento.*;
 import java.util.*;
 
 public class ModifyroomsCommand implements Command {
-    Scanner sc;
-    HashMap<Integer, Building> buildMap;
-    private int buildingNo;
+    private HashMap<Integer, Building> buildingList;
+    private int buildNo;
     private Caretaker ct;
-    private Building building;
-    private int roomno;
+    private int roomNo;
+    private double roomLength;
+    private double roomWidth;
     private Room room;
+    private Scanner sc;
+    private Building building;
 
-    public ModifyroomsCommand(int roomno, Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo,
-            Caretaker ct) {
-        this.sc = sc;
-        this.buildMap = buildMap;
-        this.buildingNo = buildingNo;
+    public ModifyroomsCommand(HashMap<Integer, Building> buildingList, int buildNo, int roomNo, Scanner sc, Caretaker ct) {
+        this.buildingList = buildingList;
+        this.buildNo = buildNo;
+        this.roomNo = roomNo;
         this.ct = ct;
-        this.roomno = roomno;
-        building = buildMap.get(buildingNo);
-        room = building.getRooms().get(roomno - 1);
+        this.sc = sc;
+        building = buildingList.get(buildNo);
+        room = building.getRooms().get(roomNo);
     }
 
     public void execute() {
 
-        ct.saveRoom(room, room.getWidth(), room.getWidth(), buildMap.get(buildingNo), buildingNo, this.toString(),
-                true);
+        System.out.print("Room No.: ");
+        roomNo = sc.nextInt();
 
         System.out.print("Length: ");
-        double roomLength = sc.nextDouble();
+        roomLength = sc.nextDouble();
 
         System.out.print("Width: ");
-        double roomWidth = sc.nextDouble();
+        roomWidth = sc.nextDouble();
         sc.nextLine();
+
+        ct.saveRoom(room, toString());
+
         System.out.println("Updated Building:");
-        buildMap.get(buildingNo).modifyRoom(roomno, roomLength, roomWidth);
-        buildMap.get(buildingNo).printBuilding();
+        buildingList.get(buildNo).modifyRoom(roomNo, roomLength, roomWidth);
+        buildingList.get(buildNo).printBuilding();
+        
 
-        System.out.println("Finish");
-
-        System.out.println(buildMap.get(buildingNo));
-
-    };
-
-    public String toString(){
-        return "Modify Room : Building No. " + buildingNo + " ,Room No. " + roomno + ", Length : "+ buildMap.get(buildingNo).getRooms().get(roomno-1).getLength() + ", Width : " + buildMap.get(buildingNo).getRooms().get(roomno-1).getWidth();
     }
-
-    public void undo() {
-
-    };
-
-    public void redo() {
-
-    };
+    public String toString(){
+        return "Modify Room : Building No. " + buildNo + " ,Room No. " + roomNo + ", Length : "+ roomLength + ", Width : " + roomWidth;
+    }
 }

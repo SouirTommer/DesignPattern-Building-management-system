@@ -1,19 +1,20 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Command;
 
-import java.util.*;
-import Building.*;
 import Memento.*;
 
 public class RedoCommandFactory implements CommandFactory {
-    private Caretaker caretaker;
+    private Caretaker ct;
 
-    public RedoCommandFactory(Caretaker caretaker) {
-        this.caretaker = caretaker;
+    public RedoCommandFactory(Caretaker ct) {
+        this.ct = ct;
     }
 
-    @Override
     public Command createCommand() {
-        return new RedoCommand(caretaker);
+        return new RedoCommand(ct);
     }
 
 }

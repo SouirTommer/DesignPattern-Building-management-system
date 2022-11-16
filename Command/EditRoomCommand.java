@@ -1,59 +1,49 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Command;
 
 import java.util.*;
-
-import javax.swing.text.Caret;
-
 import Building.*;
-import Memento.Caretaker;
+import Memento.*;
 
 public class EditRoomCommand implements Command {
-    Scanner sc;
-    HashMap<Integer, Building> buildMap;
-    int buildingNo;
-    CommandFactory acf;
-    CommandFactory dcf;
-    CommandFactory mcf;
+    private Scanner sc;
+    private HashMap<Integer, Building> buildingList;
+    private int buildNo;
+    
+    private HashMap<String, CommandFactory> tempHash = new HashMap<>();
+    private String input;
 
-    public EditRoomCommand(Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo,Caretaker ct) {
+    public EditRoomCommand(HashMap<Integer, Building> buildingList, int buildNo, Scanner sc, Caretaker ct) {
         this.sc = sc;
-        this.buildMap = buildMap;
-        this.buildingNo = buildingNo;
-        acf = new AddroomsCommandFactory(sc, buildMap, buildingNo,ct);
-        dcf = new DeleteroomsCommandFactory(sc, buildMap, buildingNo,ct);
-        mcf = new ModifyroomsCommandFactory(sc, buildMap, buildingNo,ct);
+        this.buildingList = buildingList;
+        this.buildNo = buildNo;
+
+        tempHash.put("a",new AddroomsCommandFactory(buildingList, buildNo, sc, ct));
+        tempHash.put("d",new DeleteroomsCommandFactory(buildingList, buildNo, sc, ct));
+        tempHash.put("m",new ModifyroomsCommandFactory(buildingList, buildNo, sc, ct));
     }
 
     public void execute() {
-        buildMap.get(buildingNo).printBuilding();
+
+        buildingList.get(buildNo).printBuilding();
         System.out.println("");
         System.out.println("Please enter command: [a|d|m]");
         System.out.println("a = add room, d = delete room, m = modify room");
-        String Userinput = sc.next();
+
+        input = sc.next();
         sc.nextLine();
 
-        switch (Userinput) {
-            case "a":
-                acf.createCommand().execute();
-                break;
-            case "d":
-                dcf.createCommand().execute();
-                break;
-            case "m":
-                mcf.createCommand().execute();
-                break;
-            default:
-                System.out.println("Error");
-                break;
+        
+        while(!input.equals("a")&&!input.equals("d")&&!input.equals("m")){
+            System.out.println("Wrong input");
+            System.out.println("Please enter command: [a|d|m]");
+            System.out.println("a = add room, d = delete room, m = modify room");
+            input = sc.nextLine();
         }
-    }
-
-    public void undo() {
-
-    }
-
-    public void redo() {
-
+        tempHash.get(input).createCommand().execute();
     }
 
 }

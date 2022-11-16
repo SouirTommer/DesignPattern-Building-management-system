@@ -1,57 +1,49 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Command;
 
 import Building.*;
 import Memento.*;
-
 import java.util.*;
 
 public class AddroomsCommand implements Command {
-    Scanner sc;
-    HashMap<Integer, Building> buildMap;
-    private int buildingNo;
-    Caretaker ct;
-    int roomNo;
-    double roomLength;
-    double roomWidth;
-    Building building;
-    Room room;
+    private double roomLength;
+    private double roomWidth;
+    private HashMap<Integer, Building> buildingList;
+    private int buildNo;
+    private Scanner sc;
+    private Caretaker ct;
+    private Building building;
 
-    public AddroomsCommand(double roomLength, double roomWidth, Scanner sc, HashMap<Integer, Building> buildMap,
-            int buildingNo, Caretaker ct) {
+    //local
+    private int roomNo;
+
+    public AddroomsCommand(double roomLength, double roomWidth, HashMap<Integer, Building> buildingList, int buildNo, Scanner sc, Caretaker ct) {
+        this.buildingList = buildingList;
+        this.buildNo = buildNo;
         this.sc = sc;
-        this.buildMap = buildMap;
-        this.buildingNo = buildingNo;
         this.ct = ct;
         this.roomLength = roomLength;
         this.roomWidth = roomWidth;
-        building = buildMap.get(buildingNo);
+        building = buildingList.get(buildNo);
     }
-
 
     public void execute() {
 
-        roomNo = buildMap.get(buildingNo).getRoomQty() + 1;
-        ct.saveRoom(room, roomWidth, roomLength, buildMap.get(buildingNo), buildingNo, this.toString(),
-                false);
+        sc.nextLine();
+        roomNo = buildingList.get(buildNo).getRoomQty() + 1;
+        ct.saveBuidling(building, buildNo, toString(), false);
 
         System.out.println("Updated Building:");
-        buildMap.get(buildingNo).addRoom(roomLength, roomWidth);
-        buildMap.get(buildingNo).printBuilding();
-
-        sc.nextLine();
+        buildingList.get(buildNo).addRoom(roomLength, roomWidth);
+        buildingList.get(buildNo).printBuilding();
+        
 
     };
 
-    public String toString() {
-        return "Add Room : Building No. " + buildingNo + " ,Room No. " + (roomNo) + ", Length : " + roomLength
-                + ", Width : " + roomWidth;
+    public String toString(){
+        return "Add Room : Building No. " + buildNo + " ,Room No. " + roomNo + ", Length : " + roomLength + ", Width : " + roomWidth;
     }
-
-    public void undo() {
-
-    };
-
-    public void redo() {
-
-    };
 }

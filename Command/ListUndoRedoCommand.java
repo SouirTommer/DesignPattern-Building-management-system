@@ -1,20 +1,26 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Command;
 
 import java.util.*;
 import Memento.*;
 
 public class ListUndoRedoCommand implements Command {
-    Caretaker caretaker;
+    private Caretaker ct;
+    private Iterator iter;
 
-    public ListUndoRedoCommand(Caretaker caretaker) {
-        this.caretaker = caretaker;
+    public ListUndoRedoCommand(Caretaker ct) {
+        this.ct = ct;
     }
 
     public void execute() {
         System.out.println("");
         System.out.println("Undo List :");
-        if (!caretaker.getunCommand().isEmpty()) {
-            Iterator iter = caretaker.getunCommand().iterator();
+        
+        if (!ct.getundoCommand().isEmpty()) {
+            iter = ct.getundoCommand().iterator();
             while (iter.hasNext()) {
                 String m = (String) iter.next();
                 System.out.println(m);
@@ -25,8 +31,8 @@ public class ListUndoRedoCommand implements Command {
         System.out.println("");
 
         System.out.println("Redo List :");
-        if (!caretaker.getreCommand().isEmpty()) {
-            Iterator iter = caretaker.getreCommand().iterator();
+        if (!ct.getredoCommand().isEmpty()) {
+            iter = ct.getredoCommand().iterator();
 
             while (iter.hasNext()) {
                 String m = (String) iter.next();
@@ -35,14 +41,6 @@ public class ListUndoRedoCommand implements Command {
         } else {
             System.out.println("Nothing in Redo List");
         }
-
-    }
-
-    public void undo() {
-
-    }
-
-    public void redo() {
 
     }
 

@@ -1,19 +1,22 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Command;
-
 import java.util.*;
 import Building.*;
 
 public class DisplayCommandFactory implements CommandFactory {
-    Scanner sc;
-    HashMap<Integer, Building> buildMap;
+    private Scanner sc;
+    private HashMap<Integer, Building> buildingList;
 
-    public DisplayCommandFactory(Scanner sc, HashMap<Integer, Building> buildMap) {
+    public DisplayCommandFactory( HashMap<Integer, Building> buildingList, Scanner sc){
+        this.buildingList = buildingList;
         this.sc = sc;
-        this.buildMap = buildMap;
     }
-
-    public Command createCommand() {
-        return new DisplayCommand(sc, buildMap);
+    
+    public Command createCommand(){
+        return new DisplayCommand(buildingList, sc);
     }
-
+    
 }

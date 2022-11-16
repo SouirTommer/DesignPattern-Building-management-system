@@ -1,19 +1,21 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Command;
 
-import java.util.*;
-import Building.*;
 import Memento.*;
 
 public class UndoCommandFactory implements CommandFactory {
-    Caretaker caretaker;
+    private Caretaker ct;
 
-    public UndoCommandFactory( Caretaker caretaker) {
-        this.caretaker = caretaker;
+    public UndoCommandFactory(Caretaker ct) {
+        this.ct = ct;
     }
 
     @Override
     public Command createCommand() {
-        return new UndoCommand(caretaker);
+        return new UndoCommand(ct);
     }
 
 }

@@ -1,54 +1,68 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Memento;
 
 import Building.*;
 import java.util.*;
-public class BuildingMemento  implements MementoIF{
-    private Building mbuilding;
-    private int mbuildingNo;
-    // common
+
+public class BuildingMemento implements Memento {
+
+    private Building building;
+    private int buildNo;
+
     // house
-    private int mnoOfFloors;
+    private int noOfFloors;
+
     // apartment
-    private String msupportStaff;
-    private double mmonthlyRental;
+    private String supportStaff;
+    private double monthlyRental;
     private boolean IsCreate;
 
-    public BuildingMemento(Building building, int buildingNo, boolean IsCreate) {
-        this.mbuildingNo = buildingNo;
-        mbuilding = building;
+    //
+    private ArrayList<Room> mroomList;
+    private ArrayList<Room> mroomListClone;
+
+    public BuildingMemento(Building building, int buildNo, boolean IsCreate) {
+        this.buildNo = buildNo;
+        this.building = building;
         this.IsCreate = IsCreate;
 
-
-        if (mbuilding instanceof House) {
-            this.mnoOfFloors = ((House) mbuilding).getFloors();
-        } else if (mbuilding instanceof Apartment) {
-            this.msupportStaff = ((Apartment) mbuilding).getSupportStaff();
-            this.mmonthlyRental = ((Apartment) mbuilding).getMonthlyRental();
+        if (this.building instanceof House) {
+            this.noOfFloors = ((House) this.building).getFloors();
+        } else if (this.building instanceof Apartment) {
+            this.supportStaff = ((Apartment) this.building).getSupportStaff();
+            this.monthlyRental = ((Apartment) this.building).getMonthlyRental();
         }
+
+        this.mroomListClone = (ArrayList) building.getRooms().clone();
+        this.mroomList = building.getRooms();
 
     }
 
-    // restore the product
+    // save the state
     public void restore() {
 
-        if (mbuilding instanceof House) {
-            ((House) mbuilding).setFloors(this.mnoOfFloors);
-        } else if (mbuilding instanceof Apartment) {
-            ((Apartment) mbuilding).setSupportStaff(this.msupportStaff);
-            ((Apartment) mbuilding).setMonthlyRental(this.mmonthlyRental);
+        if (building instanceof House) {
+            ((House) building).setFloors(noOfFloors);
+        } else if (building instanceof Apartment) {
+            ((Apartment) building).setSupportStaff(supportStaff);
+            ((Apartment) building).setMonthlyRental(monthlyRental);
         }
+        mroomList.clear();
+        mroomList.addAll(this.mroomListClone);
     }
 
-    // get product
     public Building getmbuilding() {
-        return this.mbuilding;
+        return building;
     }
 
     public int getmbuildingNo() {
-        return this.mbuildingNo;
+        return buildNo;
     }
 
     public boolean getIsCreate() {
-        return this.IsCreate;
+        return IsCreate;
     }
 }

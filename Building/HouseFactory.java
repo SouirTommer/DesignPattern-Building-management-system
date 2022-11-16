@@ -1,21 +1,29 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Building;
 import java.util.*;
 
 public class HouseFactory implements BuildingFactory {
 
+    private int buildNo;
+    private int nOfRooms;
+    private int nOfFloors;
+
     public Building createBuilding(Scanner sc) {
         System.out.print("Building No.: ");
-       int buildingNo = sc.nextInt();
+        buildNo = sc.nextInt();
 
         System.out.print("No. of Floors: ");
-        int numberOfFloors = sc.nextInt();
+        nOfFloors = sc.nextInt();
 
         System.out.print("Number of rooms: ");
-        int numberOfRooms = sc.nextInt();
+        nOfRooms = sc.nextInt();
 
-        Building HouseBuilding = new House(buildingNo, numberOfRooms, numberOfFloors);
+        Building houseBuilding = new House(buildNo, nOfRooms, nOfFloors);
         
-        for (int i = 1; i <= numberOfRooms; i++) {
+        for (int i = 1; i <= nOfRooms; i++) {
             System.out.println("Room No. " + i + " :");
 
             System.out.print("Length: ");
@@ -24,20 +32,27 @@ public class HouseFactory implements BuildingFactory {
             System.out.print("Width: ");
             double roomWidth = sc.nextDouble();
 
-            HouseBuilding.addRoom(roomLength, roomWidth);
+            houseBuilding.addRoom(roomLength, roomWidth);
         }
 
         System.out.println("New Building Added:");
-        HouseBuilding.printBuilding();
+
+        houseBuilding.printBuilding();
         sc.nextLine();
-        return HouseBuilding;
+
+        return houseBuilding;
     }
-    
-    public void ModifyBuilding(Scanner sc, House house) {
+
+    //this factory provided modify building too (override the origin method)
+
+    public void ModifyBuilding(Scanner sc, House h) {
+
         System.out.print("No. of Floors: ");
-        house.setFloors(sc.nextInt());
+        h.setFloors(sc.nextInt());
+
         System.out.println("Building is modified: ");
         System.out.println(toString());
+        
         sc.nextLine();
 
     }

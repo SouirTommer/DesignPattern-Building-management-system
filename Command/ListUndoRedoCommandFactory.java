@@ -1,17 +1,20 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Command;
 
-import java.util.*;
 import Memento.*;
 
 public class ListUndoRedoCommandFactory implements CommandFactory {
-    Caretaker caretaker;
+    private Caretaker ct;
 
-    public ListUndoRedoCommandFactory(Caretaker caretaker) {
-        this.caretaker = caretaker;
+    public ListUndoRedoCommandFactory(Caretaker ct) {
+        this.ct = ct;
     }
 
     public Command createCommand() {
-        return new ListUndoRedoCommand(caretaker);
+        return new ListUndoRedoCommand(ct);
     }
 
 }

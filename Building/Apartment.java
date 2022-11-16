@@ -1,5 +1,8 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Building;
-import java.util.*;
 public class Apartment extends Building{
     private double monthlyRental;
     private String supportStaff;
@@ -22,22 +25,16 @@ public class Apartment extends Building{
         return this.supportStaff;
     }
     public void modifyBuilding(){
-        // System.out.print("Modify Monthly Rental.: ");
-        // setMonthlyRental(sc.nextDouble());
-        // System.out.print("Modify Support Staff.: ");
-        // sc.nextLine();
-        // setSupportStaff(sc.nextLine());
-        // System.out.println("Building is modified: ");
-        // System.out.println(toString());
+        //the code was move to factory
     }
-    public void printBuilding(){
+    public void printBuilding(){   //print with room and \n (long)
         System.out.println("Building No: "+super.getId());
         System.out.println("Support Staff: "+supportStaff);
         System.out.println("Monthly Rental: "+monthlyRental);
         super.printRooms();
 
     }
-    public String toString(){
+    public String toString(){      //print without room (short)
         return "Building No.: "+super.getId()+", Support Staff: "+supportStaff+", Monthly Rental: "+monthlyRental;
     }
 
