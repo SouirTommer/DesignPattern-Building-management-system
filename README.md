@@ -20,10 +20,10 @@ Your system design should conform to the Open Closed Principle so that your desi
 
 You MUST apply the following design patterns for your new system
 
- Command pattern to provide the “add building”, “display buildings”, “modify building”, “add room”, "delete room", "modify room", “undo”, “redo” and “list undo/redo list” functions
+> Command pattern to provide the “add building”, “display buildings”, “modify building”, “add room”, "delete room", "modify room", “undo”, “redo” and “list undo/redo list” functions
 
- Factory pattern or Abstract Factory Pattern to create different kinds of Command objects and different kinds of Building objects (e.g. Apartment object, House object, etc.)
+> Factory pattern or Abstract Factory Pattern to create different kinds of Command objects and different kinds of Building objects (e.g. Apartment object, House object, etc.)
 
- Memento pattern to provide “Undo” and “Redo” functions on "modify building" and "modify room"
+> Memento pattern to provide “Undo” and “Redo” functions on "modify building" and "modify room"
 
 ### Completion time: 13-11-2022
