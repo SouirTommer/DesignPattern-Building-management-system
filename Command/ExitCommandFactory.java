@@ -1,10 +1,11 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Command;
 
 public class ExitCommandFactory implements CommandFactory{
 
-    public ExitCommandFactory(){
-        
-    }
     public Command createCommand(){
         return new ExitCommand();
     }

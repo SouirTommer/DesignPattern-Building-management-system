@@ -1,5 +1,9 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Building;
-import java.util.*;
+//import java.util.scanner;
 public class House extends Building{
     private int noOfFloors;
 
@@ -14,11 +18,7 @@ public class House extends Building{
         return noOfFloors;
     }
     public void modifyBuilding(){
-        // System.out.print("No. of Floors: ");
-        // setFloors(sc.nextInt());
-        // System.out.println("Building is modified:");
-        // System.out.println(toString());
-        // sc.nextLine();
+        //the code was move to factory
     }
     public void printBuilding(){
         System.out.println("Building No: "+super.getId());

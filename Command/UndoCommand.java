@@ -1,32 +1,24 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Command;
 
 import Memento.*;
-import java.util.*;
 
 public class UndoCommand implements Command {
-  Caretaker caretaker;
+  private Caretaker ct;
 
-  public UndoCommand(Caretaker caretaker) {
-    this.caretaker = caretaker;
+  public UndoCommand(Caretaker ct) {
+    this.ct = ct;
   }
 
-  @Override
   public void execute() {
-    if (!caretaker.getUndoList().isEmpty()) {
-      caretaker.undo();
+    if (!ct.getUndoList().isEmpty()) {
+      ct.undo();
     } else {
       System.out.println("Nothing to undo!");
     }
-  };
-
-  @Override
-  public void undo() {
-
-  };
-
-  @Override
-  public void redo() {
-
   };
 
 }

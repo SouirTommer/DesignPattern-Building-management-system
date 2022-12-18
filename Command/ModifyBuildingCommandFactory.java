@@ -1,3 +1,7 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Command;
 
 import Building.*;
@@ -6,19 +10,18 @@ import Memento.*;
 import java.util.*;
 
 public class ModifyBuildingCommandFactory implements CommandFactory {
-    HashMap<Integer, Building> buildMap;
-    Scanner sc;
-    Caretaker caretaker;
+    private HashMap<Integer, Building> buildingList;
+    private Scanner sc;
+    private Caretaker ct;
 
-    public ModifyBuildingCommandFactory(Scanner sc, HashMap<Integer, Building> buildMap,
-            Caretaker caretaker) {
+    public ModifyBuildingCommandFactory(HashMap<Integer, Building> buildingList, Scanner sc, Caretaker ct) {
+        this.buildingList = buildingList;
         this.sc = sc;
-        this.buildMap = buildMap;
-        this.caretaker = caretaker;
+        this.ct = ct;
     }
 
     public Command createCommand() {
-        Command c = new ModifyBuildingCommand(sc, buildMap, caretaker);
+        Command c = new ModifyBuildingCommand(buildingList, sc, ct);
         return c;
 
     }

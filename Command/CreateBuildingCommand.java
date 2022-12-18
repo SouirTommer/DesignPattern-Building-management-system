@@ -1,3 +1,7 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Command;
 
 import java.util.*;
@@ -5,45 +9,33 @@ import Building.*;
 import Memento.*;
 
 public class CreateBuildingCommand implements Command {
-    Scanner sc;
-    HashMap<Integer, Building> buildMap;
-    Command command;
-    Stack commands;
-    Caretaker caretaker;
+    private Scanner sc;
+    private Caretaker ct;
+    private HashMap<Integer, Building> buildingList;
 
-    CommandFactory af;
-    CommandFactory hf;
+    //local
+    private Building building;
+    private String input;
+    private HashMap<String, BuildingFactory> tempHash;
 
-    public CreateBuildingCommand(Scanner sc, HashMap<Integer, Building> buildMap, Caretaker caretaker) {
+    public CreateBuildingCommand(HashMap<String, BuildingFactory> tempHash, HashMap<Integer, Building> buildingList, Scanner sc, Caretaker ct, String input) {
+        this.buildingList = buildingList;
+        this.tempHash = tempHash;
         this.sc = sc;
-        this.buildMap = buildMap;
-        this.caretaker = caretaker;
-        af = new CreateApartmentCommandFactory(sc, buildMap, caretaker);
-        hf = new CreateHouseCommandFactory(sc, buildMap, caretaker);
+        this.ct = ct;
+        this.input = input;
     }
 
     public void execute() {
 
-        System.out.println("Enter Building Type (a=Apartment/h=House):");
-        String Userinput = sc.nextLine();
+        building = tempHash.get(input).createBuilding(sc);
+        buildingList.put(building.getId(), building);
 
-        switch (Userinput) {
-            case "a":
-                af.createCommand().execute();
-                break;
-
-            case "h":
-                hf.createCommand().execute();
-                break;
-        }
+        ct.saveBuidling(building, building.getId(), this.toString(), true);
     }
 
-    public void undo() {
-
-    }
-
-    public void redo() {
-
-    }
+    public String toString(){
+        return "Add Building: "+buildingList.get(building.getId()).toString();
+    }  
 
 }

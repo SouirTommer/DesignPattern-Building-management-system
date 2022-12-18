@@ -1,30 +1,23 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Command;
-
-import java.util.Stack;
 import Memento.*;
 
 public class RedoCommand implements Command {
-  Caretaker caretaker;
+  private Caretaker ct;
 
-  public RedoCommand(Caretaker caretaker) {
-    this.caretaker = caretaker;
+  public RedoCommand(Caretaker ct) {
+    this.ct = ct;
   }
 
-  @Override
   public void execute() {
-    if (!caretaker.getRedoList().isEmpty()) {
-      caretaker.redo();
+    if (!ct.getRedoList().isEmpty()) {
+      ct.redo();
     } else {
       System.out.println("Nothing to redo!");
     }
-  }
-
-  @Override
-  public void undo() {
-  }
-
-  @Override
-  public void redo() {
   }
 
 }

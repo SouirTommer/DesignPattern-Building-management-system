@@ -1,3 +1,7 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Command;
 
 import Building.*;
@@ -6,47 +10,36 @@ import Memento.*;
 import java.util.*;
 
 public class DeleteroomsCommand implements Command {
-    Scanner sc;
-    HashMap<Integer, Building> buildMap;
-    private int buildingNo;
-    Caretaker ct;
-    int roomNo;
-    private Building building;
-    private Room room;
+    
+    private HashMap<Integer, Building> buildingList;
+    private Scanner sc;
+    private int buildNo;
+    private Caretaker ct;
+    private int roomNo;
 
-    public DeleteroomsCommand(int roomNo ,Scanner sc, HashMap<Integer, Building> buildMap, int buildingNo, Caretaker ct) {
-        this.sc = sc;
-        this.buildMap = buildMap;
-        this.buildingNo = buildingNo;
+    private Building building;
+
+    public DeleteroomsCommand(int roomNo, HashMap<Integer, Building> buildingList, int buildNo, Scanner sc, Caretaker ct) {
         this.roomNo = roomNo;
+        this.buildingList = buildingList;
+        this.buildNo = buildNo;
+        this.sc = sc;
         this.ct = ct;
-        building = buildMap.get(buildingNo);
-        room = building.getRooms().get(roomNo - 1);
+        building = buildingList.get(buildNo);
     }
 
     public void execute() {
-        ct.saveRoom(room, room.getWidth(), room.getWidth(), buildMap.get(buildingNo), buildingNo, this.toString(),
-                false);
+
+        ct.saveBuidling(building, buildNo, toString(), false);
 
         System.out.println("Updated Building:");
-        buildMap.get(buildingNo).deleteRoom(roomNo);
-        buildMap.get(buildingNo).printBuilding();
-
+        buildingList.get(buildNo).deleteRoom(roomNo);
+        buildingList.get(buildNo).printBuilding();
+        
         sc.nextLine();
 
-    };
-
+    };   
     public String toString() {
-
-        return "Delete Room : Building No. " + buildingNo + " ,Room No. " + roomNo + ", Length : "
-                + buildMap.get(buildingNo).getRooms().get(roomNo-1).getLength() + ", Width : " + buildMap.get(buildingNo).getRooms().get(roomNo-1).getWidth();
+        return "Delete Room : Building No. " + buildNo + " ,Room No. " + roomNo + ", Length : "+ buildingList.get(buildNo).getRooms().get(roomNo-1).getLength() + ", Width : " + buildingList.get(buildNo).getRooms().get(roomNo-1).getWidth();
     }
-
-    public void undo() {
-
-    };
-
-    public void redo() {
-
-    };
 }

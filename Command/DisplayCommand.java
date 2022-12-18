@@ -1,41 +1,40 @@
+/*
+Student:   Ching Chun Hung 210020835 2B
+Last Edit  13/11/2022
+*/
 package Command;
 
 import Building.*;
-
 import java.util.*;
 
 public class DisplayCommand implements Command {
-    Scanner sc;
-    HashMap<Integer, Building> buildMap;
+    private HashMap <Integer,Building> buildingList;
+    private Scanner sc;
+    private String input;
 
-    public DisplayCommand(Scanner sc, HashMap<Integer, Building> buildMap) {
+    public DisplayCommand(HashMap<Integer,Building> buildingList, Scanner sc) {
+        this.buildingList = buildingList;
         this.sc = sc;
-        this.buildMap = buildMap;
+        this.input = "";
     }
 
     public void execute() {
+
         System.out.println("Enter Building No. (* to display all):");
-        String Userinput = sc.nextLine();
+        input = sc.nextLine();
 
-        if (Userinput.equals("*")) {
+        if (input.equals("*")) {
+            //use Treemap to sort the hasmap by BuildingNo integer
+            Map<Integer, Building> sorted = new TreeMap<>(buildingList);
 
-            Map<Integer, Building> sorted = new TreeMap<>(buildMap);
-
+            //use for each loop the hashmap
             for (Map.Entry i : sorted.entrySet()) {
 
                 System.out.println(sorted.get(i.getKey()).toString());
             }
         } else {
-            buildMap.get(Integer.parseInt(Userinput)).printBuilding();
-
+            buildingList.get(Integer.parseInt(input)).printBuilding();
         }
-    };
+    }
 
-    public void undo() {
-
-    };
-
-    public void redo() {
-
-    };
 }
